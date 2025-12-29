@@ -122,9 +122,9 @@ The BKS algorithm evaluates picks across multiple dimensions:
 
 It began with a theoretical metric that I came up with ad hoc, while arguing with my friends in our fantasy football group chat: Ball Knowing Score. In its first iteration, it was a simple composite metric that balanced several distinct aspects of a users bet based on their importance, and generated a number from 1-10. Fast forward 6 months, and it has evolved into a complex algorithm that integrates these aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. 
 
-My ability to imagine, define, and execute hinged on my technical skillset. As this project progressed and my technical knowledge expanded, my vision and imagination grew in kind, and I was able to execute something in ~6 months that previously would have taken years.
+My ability to imagine, define, and execute hinged on my technical skillset. As this project progressed and my technical knowledge expanded, I was able to execute something in ~6 months that previously would have taken years.
 
-Two critical tools enabled this build: Claude Opus 4.5 and Claude Code. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. 
+Two critical tools enabled this build: Claude Opus 4.5 and Claude Code. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. Once completed, I deployed these tools to help bring this vision to life. 
 
 I utilized claude Opus 4.5 as my Associate Product Manager- organinizing, planning, and structuring tasks to be deployed with Claude Code. Generating detailed prompts using the Master-Clone Architecture to speed up production and iterate quickly. Assisting with QA and translating errors into actionable steps. 
 
