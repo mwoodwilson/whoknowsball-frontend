@@ -2,112 +2,196 @@
 
 # 🏀 WhoKnowsBall
 
-### A Sports Betting Skill Tracker - Quantify Your Ball Knowledge
+**The metric that settles every sports bar argument.**
 
 [![React Native](https://img.shields.io/badge/React_Native-0.82-61DAFB?style=flat&logo=react)](https://reactnative.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Redux](https://img.shields.io/badge/Redux_Toolkit-2.9-764ABC?style=flat&logo=redux)](https://redux-toolkit.js.org/)
-[![Supabase](https://img.shields.io/badge/Supabase-Auth-3ECF8E?style=flat&logo=supabase)](https://supabase.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js)](https://nodejs.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat&logo=supabase)](https://supabase.com/)
 
-[Features](#-features) • [Architecture](#-architecture) • [Setup](#-setup) • [About](#-about-this-project)
+[The Problem](#the-problem) • [The Solution](#the-solution) • [The App](#-the-app) • [Architecture](#-technical-architecture) • [How I Built This](#-how-this-got-built) • [Contact](#-about-me)
 
 </div>
 
 ---
 
-## 📱 Demo
+## The Problem
 
-> Video demo coming soon - drag and drop your demo video here when editing on GitHub
+Every sports fan thinks they know ball. But when your buddy claims he "called" the Chiefs winning the Super Bowl, there's no way to prove he actually made that prediction—or that it was a smart one.
 
-<details>
-<summary>📸 Screenshots</summary>
+Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs.
 
-| Home | My Bets | My BKS | Account |
-|:----:|:-------:|:------:|:-------:|
-| Coming Soon | Coming Soon | Coming Soon | Coming Soon |
-
-</details>
+There's no standardized way to measure sports betting intelligence. Until now.
 
 ---
 
-## ✨ Features
+## The Solution
 
-- **🎯 Ball Knowing Score (BKS)** - Proprietary algorithm that quantifies betting skill on a 0-100 scale
-- **📊 Real-Time Odds** - Live odds from major sportsbooks via The Odds API
-- **🏈 Multi-Sport Support** - NFL, NBA, MLB, NHL coverage
-- **📈 Performance Analytics** - Track your betting performance over time with interactive charts
-- **🎰 Parlay Builder** - Build and track complex multi-leg parlays with validation
-- **🏆 Leaderboards** - Compete with friends and prove your ball knowledge
-- **🔐 Secure Auth** - Email/password and OAuth (Google, Apple) via Supabase
-- **📱 Cross-Platform** - iOS and Android support with React Native
+WhoKnowsBall introduces the **Ball Knowing Score (BKS)**—a 0-100 rating that quantifies betting skill, not bankroll size.
+
+The BKS algorithm evaluates picks across multiple dimensions:
+
+| Dimension | What It Measures |
+|-----------|------------------|
+| **Difficulty** | Were you betting heavy favorites or finding value in underdogs? |
+| **Complexity** | Simple moneyline or sophisticated multi-leg parlay? |
+| **Accuracy** | Did you beat the closing line (CLV)? |
+| **Stake Significance** | Are you putting conviction behind your picks? |
+| **Context** | Game importance, market efficiency, timing |
+
+**No real money. No gambling. Just proof of who actually knows ball.**
 
 ---
 
-## 🏗️ Architecture
+## 📱 The App
+
+<!-- Replace these with your actual screenshots -->
+| Browse Games | Build Parlays | Track Your BKS | Compete |
+|:------------:|:-------------:|:--------------:|:-------:|
+| ![Home](./docs/screenshots/home.png) | ![Parlay](./docs/screenshots/parlay.png) | ![BKS](./docs/screenshots/mybks.png) | ![Leaderboard](./docs/screenshots/leaderboard.png) |
+
+### Features
+
+- **📊 Real-Time Odds** — Live lines from FanDuel, DraftKings, and BetMGM via The Odds API
+- **🏈 Multi-Sport Coverage** — NFL, NBA, MLB, NHL
+- **🎰 Parlay Builder** — Full sportsbook-style validation (no conflicting legs, correlation limits)
+- **📈 Performance Analytics** — Time-series charts, streak tracking, sport-by-sport breakdown
+- **🏆 Leaderboards** — Compete with friends and prove your ball knowledge
+- **🔐 Secure Auth** — Email/password, Google, and Apple sign-in via Supabase
+
+---
+
+## 🏗️ Technical Architecture
 
 ```
-┌─────────────────────┐     ┌─────────────────────┐
-│   React Native App  │────▶│   Node.js Backend   │
-│   (This Repo)       │     │   (bks-backend)     │
-└─────────────────────┘     └──────────┬──────────┘
-                                       │
-                    ┌──────────────────┼──────────────────┐
-                    ▼                  ▼                  ▼
-            ┌───────────┐      ┌───────────┐      ┌───────────┐
-            │ Supabase  │      │   Redis   │      │ External  │
-            │ (Auth/DB) │      │  (Cache)  │      │   APIs    │
-            └───────────┘      └───────────┘      └───────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                        MOBILE CLIENT                            │
+│  React Native · TypeScript · Redux Toolkit · React Navigation   │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         BACKEND API                             │
+│    Node.js · Express · TypeScript · BKS Algorithm Engine        │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+          ┌─────────────────────┼─────────────────────┐
+          ▼                     ▼                     ▼
+   ┌─────────────┐      ┌─────────────┐      ┌─────────────┐
+   │  Supabase   │      │    Redis    │      │  External   │
+   │  PostgreSQL │      │    Cache    │      │    APIs     │
+   │  + Auth     │      │             │      │             │
+   └─────────────┘      └─────────────┘      └─────────────┘
 ```
 
 ### Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Framework** | React Native 0.82 |
-| **Language** | TypeScript 5.0 |
-| **State Management** | Redux Toolkit |
-| **Navigation** | React Navigation 7 |
-| **Authentication** | Supabase Auth |
-| **Charts** | React Native Skia |
-| **Storage** | MMKV |
+| Layer | Technologies |
+|-------|--------------|
+| **Mobile** | React Native 0.82, TypeScript, Redux Toolkit, React Navigation 7 |
+| **Backend** | Node.js, Express, TypeScript |
+| **Database** | Supabase PostgreSQL with Row-Level Security |
+| **Caching** | Redis (Upstash) |
+| **Auth** | Supabase Auth (OAuth + Email) |
+| **APIs** | The Odds API, API-Sports |
+
+### What Got Built
+
+| Metric | Count |
+|--------|-------|
+| React Native Components | 50+ |
+| REST API Endpoints | 25+ |
+| Database Tables | 8 (with RLS policies) |
+| Background Jobs | 3 (odds sync, bet settlement, BKS calculation) |
 
 ---
 
-## 🚀 Setup
+## 🧠 How This Got Built
+
+**I'm a Product Manager. I don't write production code. But I built this anyway.**
+
+Here's what I mean:
+
+I wrote the PRD. I designed the database schema. I spec'd every API endpoint. I defined the BKS algorithm down to the math. Then I used **[Claude Code](https://claude.ai/code)** as my implementation partner—directing it with detailed prompts, reviewing every output, catching bugs, and iterating until the app actually worked.
+
+### My Process
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   Define     │────▶│   Specify    │────▶│   Direct     │────▶│     QA       │
+│   Vision     │     │   Technically│     │   Claude     │     │   & Ship     │
+└──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+      │                    │                    │                    │
+      ▼                    ▼                    ▼                    ▼
+  Product          Architecture          Implementation         Debug &
+  Strategy         & Schema              via AI                 Iterate
+```
+
+### What I Actually Did
+
+| Phase | My Contribution |
+|-------|-----------------|
+| **Product Vision** | Conceived BKS concept, defined target users, scoped MVP |
+| **Technical Specs** | Wrote PRD with database schema, API contracts, algorithm math |
+| **Architecture** | Made decisions on tech stack, caching strategy, auth flow |
+| **Prompt Engineering** | Crafted detailed prompts that translated specs into working code |
+| **Code Review** | Evaluated every output, caught edge cases, directed fixes |
+| **QA & Debugging** | Found bugs, traced issues, iterated until production-ready |
+
+### What I Learned
+
+**AI doesn't replace the need to understand systems. It amplifies it.**
+
+The more precisely I could specify what I wanted, the better the output:
+- Vague prompt → broken code
+- Detailed spec → working feature
+
+This project took 200+ hours. Not because AI is slow—because *good product work* takes time. Defining requirements, making tradeoffs, catching edge cases, iterating on UX. AI accelerated implementation, but the product thinking was irreducibly human.
+
+### The Thesis
+
+> PMs who deeply understand technology can now ship products, not just manage them.
+
+I'm not claiming to be an engineer. I'm demonstrating that **technical PMs can leverage AI tools to go from idea → working product**—by being precise enough in their specifications that AI can execute on them.
+
+This is where product management is heading. I wanted to get there first.
+
+---
+
+## 🚀 Local Development
 
 ### Prerequisites
 
 - Node.js 18+
 - Xcode 15+ (iOS)
-- Android Studio (Android)
 - CocoaPods
+- [Backend API](https://github.com/yourusername/whoknowsball-backend) running
 
-### Installation
+### Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR-USERNAME/whoknowsball-frontend.git
+git clone https://github.com/yourusername/whoknowsball-frontend.git
 cd whoknowsball-frontend
 
 # Install dependencies
 npm install
 
-# iOS only - install pods
+# iOS pods
 cd ios && pod install && cd ..
 
-# Copy environment file
+# Configure environment
 cp .env.example .env
-# Edit .env with your configuration
+# Edit .env with your API keys
 
-# Start Metro bundler
+# Start Metro
 npm start
 
-# Run on iOS
+# Run on iOS (in another terminal)
 npm run ios
-
-# Run on Android
-npm run android
 ```
+
+See the [Backend Repository](https://github.com/yourusername/whoknowsball-backend) for API setup instructions.
 
 ---
 
@@ -115,68 +199,63 @@ npm run android
 
 ```
 src/
-├── components/        # Reusable UI components
-│   ├── Account/       # Account settings components
-│   ├── BetSlip/       # Bet slip and parlay builder
-│   ├── GameCard/      # Game display with odds
-│   └── MyBKS/         # BKS analytics charts
-├── navigation/        # React Navigation setup
-├── screens/           # Screen components
-│   ├── Account/       # Profile & settings
-│   ├── Auth/          # Login, register, verification
-│   ├── Home/          # Game browsing
-│   ├── MyBets/        # Bet history
-│   └── MyBKS/         # Performance dashboard
-├── services/          # API and business logic
-├── store/             # Redux store and slices
-├── theme/             # Design system (colors, typography)
-└── types/             # TypeScript definitions
+├── components/          # Reusable UI components
+│   ├── Account/         # Settings & profile components
+│   ├── BetSlip/         # Parlay builder
+│   ├── GameCard/        # Game display with odds buttons
+│   └── MyBKS/           # Charts and analytics
+├── navigation/          # React Navigation config
+├── screens/             # Screen components
+│   ├── Auth/            # Login, register, verification
+│   ├── Home/            # Game browsing by sport
+│   ├── MyBets/          # Bet history and tracking
+│   └── MyBKS/           # Performance dashboard
+├── services/            # API layer and business logic
+├── store/               # Redux store, slices, selectors
+├── theme/               # Design tokens (colors, typography)
+└── types/               # TypeScript definitions
 ```
 
 ---
 
-## 👨‍💼 About This Project
+## 📄 Documentation
 
-### The PM Behind It
-
-This project was built by **Matt Wilson**, a Product Manager demonstrating technical leadership through AI-augmented development.
-
-**My Role:**
-- 🎯 **Product Vision** - Defined the concept of quantifying "Ball Knowledge" into a measurable score
-- 📋 **Technical PRD** - Wrote comprehensive specifications including the BKS algorithm design
-- 🏗️ **Architecture Decisions** - Designed system architecture, database schema, and API contracts
-- 🤖 **AI-Augmented Development** - Directed Claude Code as full-stack engineer
-- ✅ **Quality Assurance** - Conducted thorough QA testing and iteration
-
-### AI-Powered Development
-
-This project showcases a modern PM workflow:
-- **Claude Code** served as the full-stack engineer, implementing features from my specifications
-- I served as the technical PM, making all product decisions and directing development
-
-This demonstrates that modern PMs can leverage AI tools to ship production-quality software while focusing on product strategy, user experience, and technical direction.
+- **[Product Requirements Document](./docs/PRD.md)** — Full specs, user stories, and technical requirements
+- **[Backend Repository](https://github.com/yourusername/whoknowsball-backend)** — API server and BKS algorithm
 
 ---
 
-## 📬 Contact
+## 👋 About Me
 
-**Matt Wilson** - Product Manager
+**Matt Wilson** — Product Manager exploring the frontier of AI-augmented development.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/matthewwoodwilson/)
-[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=flat&logo=gmail)](mailto:matthew.wood.wilson@gmail.com)
+I built WhoKnowsBall to prove a thesis: **PMs who understand technology deeply can leverage AI to ship real products—not by pretending to be engineers, but by being better PMs.**
+
+The ones who can specify systems precisely enough for AI to build them.
+
+Currently seeking PM roles where I can bring this technical depth to product strategy.
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/matthewwoodwilson/)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail)](mailto:matthew.wood.wilson@gmail.com)
+
+</div>
 
 ---
 
-## 📄 License
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-The Ball Knowing Score (BKS) algorithm is proprietary and has been redacted from this public repository.
+**Note:** The Ball Knowing Score (BKS) algorithm is proprietary and has been redacted from this public repository. The architecture and integration points are visible, but the scoring logic is not included.
 
 ---
 
 <div align="center">
 
-Built with ☕ and 🤖 by Matt Wilson
+**Built with curiosity, caffeine, and Claude.**
+
+*Want to know more about my process? Happy to walk through it.*
 
 </div>
