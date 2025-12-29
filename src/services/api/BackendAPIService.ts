@@ -26,6 +26,17 @@ class BackendAPIService {
     return this.get(`/api/v1/users/bks-history?days=${days}`);
   }
 
+  /**
+   * Get global leaderboard rankings
+   * @param limit Number of entries to return (default: 100, max: 500)
+   * @param offset Number of entries to skip for pagination (default: 0)
+   * @returns Leaderboard data with rankings, total count, and pagination info
+   */
+  async getGlobalLeaderboard(limit: number = 100, offset: number = 0) {
+    console.log(`[BackendAPI] Fetching global leaderboard (limit=${limit}, offset=${offset})`);
+    return this.get(`/api/v1/leaderboard/global?limit=${limit}&offset=${offset}`);
+  }
+
   async getUserBets() {
     console.log('[BackendAPI] Fetching user bets...');
     const response = await this.get('/api/v1/bets');

@@ -335,18 +335,18 @@ export const BetSlip = ({ bets, onPlaceBet, onClearSlip, onRemoveBet }) => {
 
   const getBKSColor = (bks) => {
     if (!bks) return TealPineColors.textSecondary;
-    if (bks >= 70) return '#FFD700'; // Gold for elite
-    if (bks >= 50) return TealPineColors.accent;
-    if (bks >= 30) return TealPineColors.primary;
-    return TealPineColors.textSecondary;
+    if (bks >= 91) return '#22C55E'; // Green for Ball God
+    if (bks >= 61) return '#22C55E'; // Green for Ball Knower
+    return '#EAB308'; // Yellow/Gold for everything else (0-60)
   };
 
   const getBKSLabel = (bks) => {
     if (!bks) return '';
-    if (bks >= 70) return '🔥 ELITE';
-    if (bks >= 50) return '⭐ SHARP';
-    if (bks >= 30) return '👍 SOLID';
-    return '📊 STANDARD';
+    if (bks >= 91) return 'BALL GOD';
+    if (bks >= 61) return 'BALL KNOWER';
+    if (bks >= 51) return 'SOLID';
+    if (bks >= 31) return 'STANDARD';
+    return 'CONSERVATIVE';
   };
 
   const potentialPayout = calculatePayout();
@@ -504,10 +504,7 @@ export const BetSlip = ({ bets, onPlaceBet, onClearSlip, onRemoveBet }) => {
                 <Text style={styles.bksGaugeDenominator}>/100</Text>
               </View>
               <Text style={[styles.bksRatingText, { color: getBKSColor(overallBKS) }]}>
-                {getBKSLabel(overallBKS).replace(/[🔥⭐👍📊]\s/, '')}
-              </Text>
-              <Text style={styles.bksSubtext}>
-                Based on historical data, odds value, and risk analysis
+                {getBKSLabel(overallBKS)}
               </Text>
             </View>
           ) : (
@@ -762,7 +759,7 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
   },
   bksTitle: {
-    fontSize: 10,
+    fontSize: 20,
     fontWeight: '700',
     color: TealPineColors.textSecondary,
     letterSpacing: 1.5,
@@ -777,15 +774,20 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
     borderRadius: 70,
-    borderWidth: 12,
+    borderWidth: 6,
     borderColor: TealPineColors.primary,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 179, 164, 0.1)',
+    backgroundColor: 'rgba(0, 179, 164, 0.05)',
+    shadowColor: TealPineColors.primary,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
   },
   bksGaugeScore: {
     fontSize: 56,
-    fontWeight: '800',
+    fontWeight: '300',
     color: TealPineColors.primary,
     lineHeight: 56,
   },
@@ -801,14 +803,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
     textTransform: 'uppercase',
     letterSpacing: 1,
-  },
-  bksSubtext: {
-    fontSize: 11,
-    color: TealPineColors.textSecondary,
-    marginTop: 8,
-    textAlign: 'center',
-    paddingHorizontal: 20,
-    lineHeight: 14,
   },
   bksCalculatingText: {
     fontSize: 13,
@@ -839,7 +833,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputLabel: {
-    fontSize: 12,
+    fontSize: 24,
     fontWeight: '700',
     color: TealPineColors.textSecondary,
     letterSpacing: 1,
@@ -881,12 +875,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     color: TealPineColors.accent,
-  },
-  bksGaugeDenominator: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: TealPineColors.textSecondary,
-    marginTop: 4,
   },
   // Footer
   footer: {

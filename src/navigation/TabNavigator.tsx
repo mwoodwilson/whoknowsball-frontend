@@ -17,9 +17,7 @@ import { HomeScreen } from '../screens/Home/HomeScreen';
 import { MyBetsScreen } from '../screens/MyBets/MyBetsScreen';
 import MyBKSScreen from '../screens/MyBKS/MyBKSScreen';
 import AccountScreen from '../screens/AccountScreen';
-
-// Placeholder screens for now
-const LeaderboardPlaceholder = () => <View style={{flex:1, backgroundColor: TealPineColors.background, justifyContent:'center', alignItems:'center'}}><Text style={{color: TealPineColors.textPrimary, fontSize: 18}}>Coming Soon</Text></View>;
+import LeaderboardScreen from '../screens/Leaderboard/LeaderboardScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -315,7 +313,7 @@ export const TabNavigator = () => {
         />
         <Tab.Screen
           name="Leaderboard"
-          component={LeaderboardPlaceholder}
+          component={LeaderboardScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
               <View style={{ alignItems: 'center', justifyContent: 'center' }}>
