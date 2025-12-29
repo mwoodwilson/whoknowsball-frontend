@@ -45,15 +45,9 @@ The BKS algorithm evaluates picks across multiple dimensions:
 
 ## 📱 The App
 
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 25" src="https://github.com/user-attachments/assets/b25d73f4-cc1e-4ec6-9425-ecd0cb4a4686" />
-
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 28" src="https://github.com/user-attachments/assets/65d1d1f9-fe97-4210-a66d-b577b53ddb78" />
-
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 38" src="https://github.com/user-attachments/assets/295bc10c-532f-4e23-9733-2aa848378ac9" />
-
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 42" src="https://github.com/user-attachments/assets/9e09e720-77c9-41f9-b44d-9d98640f2a27" />
-
-<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 45" src="https://github.com/user-attachments/assets/32726c32-d222-4434-afa5-fb49068e022d" />
+| Home | My Bets | Leaderboard | My BKS | Account |
+|:----:|:-------:|:-----------:|:------:|:-------:|
+| <img src="https://github.com/user-attachments/assets/b25d73f4-cc1e-4ec6-9425-ecd0cb4a4686" width="150" /> | <img src="https://github.com/user-attachments/assets/65d1d1f9-fe97-4210-a66d-b577b53ddb78" width="150" /> | <img src="https://github.com/user-attachments/assets/295bc10c-532f-4e23-9733-2aa848378ac9" width="150" /> | <img src="https://github.com/user-attachments/assets/9e09e720-77c9-41f9-b44d-9d98640f2a27" width="150" /> | <img src="https://github.com/user-attachments/assets/32726c32-d222-4434-afa5-fb49068e022d" width="150" /> |
 
 ### Features
 
