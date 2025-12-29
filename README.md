@@ -17,7 +17,7 @@
 
 ## The Problem
 
-Every sports fan thinks they know ball. But when your buddy claims he "called" the Chiefs winning the Super Bowl, there's no way to prove he actually made that prediction—or that it was a smart one.
+Every sports fan thinks they know ball. In every group chat, in every sports bar, there exists the same argument- who knows ball?  When your buddy claims he "called" the Chiefs winning in OT and points to this as proof of ball knowledge superiority, how can you effectively argue with him? How can you prove him wrong, and do the impossible- get a chiefs fan to stop talking?
 
 Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs.
 
@@ -27,7 +27,7 @@ There's no standardized way to measure sports betting intelligence. Until now.
 
 ## The Solution
 
-WhoKnowsBall introduces the **Ball Knowing Score (BKS)**—a 0-100 rating that quantifies betting skill, not bankroll size.
+WhoKnowsBall introduces the **Ball Knowing Score (BKS)**—a 0-100 rating that quantifies betting skill, not just bankroll size or frequency.
 
 The BKS algorithm evaluates picks across multiple dimensions:
 
@@ -45,10 +45,15 @@ The BKS algorithm evaluates picks across multiple dimensions:
 
 ## 📱 The App
 
-<!-- Replace these with your actual screenshots -->
-| Browse Games | Build Parlays | Track Your BKS | Compete |
-|:------------:|:-------------:|:--------------:|:-------:|
-| ![Home](./docs/screenshots/home.png) | ![Parlay](./docs/screenshots/parlay.png) | ![BKS](./docs/screenshots/mybks.png) | ![Leaderboard](./docs/screenshots/leaderboard.png) |
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 25" src="https://github.com/user-attachments/assets/b25d73f4-cc1e-4ec6-9425-ecd0cb4a4686" />
+
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 28" src="https://github.com/user-attachments/assets/65d1d1f9-fe97-4210-a66d-b577b53ddb78" />
+
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 38" src="https://github.com/user-attachments/assets/295bc10c-532f-4e23-9733-2aa848378ac9" />
+
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 42" src="https://github.com/user-attachments/assets/9e09e720-77c9-41f9-b44d-9d98640f2a27" />
+
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 17 Pro - 2025-12-29 at 14 20 45" src="https://github.com/user-attachments/assets/32726c32-d222-4434-afa5-fb49068e022d" />
 
 ### Features
 
@@ -254,7 +259,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Built with curiosity, caffeine, and Claude.**
+**Built with my buddy Claude, who joined me in mu neverending quest to triumph over my friends and settle arguments in our fantasy sports group chat.**
 
 *Want to know more about my process? Happy to walk through it.*
 
