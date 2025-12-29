@@ -17,7 +17,7 @@
 
 ## The Problem
 
-Every sports fan thinks they know ball. In every group chat, in every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims he "called" the Chiefs winning in OT and points to this as proof of ball knowledge superiority, how can you effectively argue with him? How can you prove him wrong, and do the impossible- get a chiefs fan to stop talking?
+Every sports fan thinks they know ball. In every group chat, in every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims he "called" the Chiefs winning in OT and points to this as proof of superior ball knowledge, how can you argue with him? How can you prove him wrong, and do the impossible- get a chiefs fan to stop talking?
 
 Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs.
 
