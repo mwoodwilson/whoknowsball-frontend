@@ -27,7 +27,7 @@ There's no standardized way to measure sports betting intelligence. Until now.
 
 ## The Solution
 
-WhoKnowsBall introduces the **Ball Knowing Score (BKS)**—a 0-100 rating that quantifies betting skill, not just bankroll size or frequency.
+WhoKnowsBall is an app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency.
 
 The BKS algorithm evaluates picks across multiple dimensions:
 
