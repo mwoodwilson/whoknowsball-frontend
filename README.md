@@ -118,11 +118,13 @@ The BKS algorithm evaluates picks across multiple dimensions:
 
 ## 🧠 How This Got Built
 
-**I'm a Product Manager. I don't write production code. But I built this anyway.**
+**I'm a Product Lead at Google. I don't write production code, and I have only a limited understanding of python at most. But I built this app anyways because I believed there was a significant market gap in a lucrative space where I am both a passionate fan and customer myself.**
 
-Here's what I mean:
+It began with a theoretical metric that I came up with ad hoc, while arguing with my friends in our fantasy football group chat: Ball Knowing Score. In its first iteration, it was a simple composite metric that balanced several distinct aspects of a users bet based on their importance, and generated a number from 1-10. Fast forward 6 months, and it has evolved into a complex algorithm that integrates these aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. 
 
-I wrote the PRD. I designed the database schema. I spec'd every API endpoint. I defined the BKS algorithm down to the math. Then I used **[Claude Code](https://claude.ai/code)** as my implementation partner—directing it with detailed prompts, reviewing every output, catching bugs, and iterating until the app actually worked.
+My ability to imagine and execute is limited only by technical bounds, put in place by technical concepts I simply have not learned yet. As this project progressed and I my technical knowledge expanded, my vision and imagination grew in kind, and I was able to execute something that previously would have never been possible.
+
+Two critical tools enabled this build: Claude Opus 4.5 and Claude Code. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. I utilized claude Opus 4.5 as my Associate Product Manager- organinizing, planning, and structuring tasks to be deployed with Claude Code. Generating detailed prompts using the Master-Clone Architecture to speed up production and iterate quickly. I utilized Claude Code as my full-stack engineer- asdirecting it with these detailed prompts, reviewing its every output, catching bugs, and iterating until the app actually worked. Being the Product Lead and a potential user/customer of the app gave me the dual perspective necessary to ensure that not only did it work, but it was actually **fun** to use.
 
 ### My Process
 
@@ -144,27 +146,15 @@ I wrote the PRD. I designed the database schema. I spec'd every API endpoint. I 
 | **Product Vision** | Conceived BKS concept, defined target users, scoped MVP |
 | **Technical Specs** | Wrote PRD with database schema, API contracts, algorithm math |
 | **Architecture** | Made decisions on tech stack, caching strategy, auth flow |
-| **Prompt Engineering** | Crafted detailed prompts that translated specs into working code |
-| **Code Review** | Evaluated every output, caught edge cases, directed fixes |
+| **Prompt Engineering** | Crafted detailed MCA (Master-Clone Architecture) prompts for Claude Code that translated specs into working code |
+| **Code Review** | Evaluated every output with real-time simulation, caught edge cases, directed fixes |
 | **QA & Debugging** | Found bugs, traced issues, iterated until production-ready |
 
 ### What I Learned
 
-**AI doesn't replace the need to understand systems. It amplifies it.**
+**AI doesn't replace the need to understand systems, and will never replace human perspective/curation. But it can amplify it.**
 
-The more precisely I could specify what I wanted, the better the output:
-- Vague prompt → broken code
-- Detailed spec → working feature
-
-This project took 200+ hours. Not because AI is slow—because *good product work* takes time. Defining requirements, making tradeoffs, catching edge cases, iterating on UX. AI accelerated implementation, but the product thinking was irreducibly human.
-
-### The Thesis
-
-> PMs who deeply understand technology can now ship products, not just manage them.
-
-I'm not claiming to be an engineer. I'm demonstrating that **technical PMs can leverage AI tools to go from idea → working product**—by being precise enough in their specifications that AI can execute on them.
-
-This is where product management is heading. I wanted to get there first.
+The more precisely I understood what specifically I was building, the more I could specify what I wanted, which in turn improved the output. This project took 200+ hours, and I'd estimate 100 of those were spent learning/studying each new concept, and subsequently revising the incorrect assumptions Claude Code and Opus were making on my behalf. As straightforward as defining requirements, making tradeoffs, catching edge cases, and iterating on UX sounds, it is entirely different when you have automated tools at your fingertips that are designed to build as efficiently as possible, which means making data-driven assumptions wherever necessary. This resulted in a need for painstaking review and curation to ensure the critical nuance of human perspective was reflected in all code (and eventually led to templated addendums for all prompts stating assumptions are forbidden). AI accelerated implementation, but the product thinking was entirely human.
 
 ---
 
@@ -230,7 +220,7 @@ src/
 
 ## 📄 Documentation
 
-- **[Product Requirements Document](./docs/PRD.md)** — Full specs, user stories, and technical requirements
+- **[Product Requirements Document](./docs/PRD.md)** — Full specs and technical requirements
 - **[Backend Repository](https://github.com/yourusername/whoknowsball-backend)** — API server and BKS algorithm
 
 ---
@@ -239,11 +229,13 @@ src/
 
 **Matt Wilson** — Product Manager exploring the frontier of AI-augmented development.
 
-I built WhoKnowsBall to prove a thesis: **PMs who understand technology deeply can leverage AI to ship real products—not by pretending to be engineers, but by being better PMs.**
+I built WhoKnowsBall to prove answer two questions: 
 
-The ones who can specify systems precisely enough for AI to build them.
+**1. Can a PM with the necessary vision, technical skillset, and business acumen build an app despite not having direct programming experience?**
 
-Currently seeking PM roles where I can bring this technical depth to product strategy.
+**2. Do I know more about ball than my friends?**
+
+The answer to both of these questions is yes.
 
 <div align="center">
 
