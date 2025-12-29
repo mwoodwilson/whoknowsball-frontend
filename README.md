@@ -124,7 +124,11 @@ It began with a theoretical metric that I came up with ad hoc, while arguing wit
 
 My ability to imagine, define, and execute hinged on my technical skillset. As this project progressed and my technical knowledge expanded, my vision and imagination grew in kind, and I was able to execute something in ~6 months that previously would have taken years.
 
-Two critical tools enabled this build: Claude Opus 4.5 and Claude Code. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. I utilized claude Opus 4.5 as my Associate Product Manager- organinizing, planning, and structuring tasks to be deployed with Claude Code. Generating detailed prompts using the Master-Clone Architecture to speed up production and iterate quickly. I utilized Claude Code as my full-stack engineer- asdirecting it with these detailed prompts, reviewing its every output, catching bugs, and iterating until the app actually worked. Being the Product Lead and a potential user/customer of the app gave me the dual perspective necessary to ensure that not only did it work, but it was actually **fun** to use.
+Two critical tools enabled this build: Claude Opus 4.5 and Claude Code. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. 
+
+I utilized claude Opus 4.5 as my Associate Product Manager- organinizing, planning, and structuring tasks to be deployed with Claude Code. Generating detailed prompts using the Master-Clone Architecture to speed up production and iterate quickly. Assisting with QA and translating errors into actionable steps. 
+
+I utilized Claude Code as my full-stack engineer- asdirecting it with these detailed prompts, reviewing its every output, catching bugs, and iterating until the app actually worked. Being the Product Lead and a potential user/customer of the app gave me the dual perspective necessary to ensure that not only did it work, but it was actually **fun** to use.
 
 ### My Process
 
