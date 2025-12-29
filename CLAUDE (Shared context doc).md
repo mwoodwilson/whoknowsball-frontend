@@ -9,11 +9,15 @@
 
 ## 1. Project Overview
 
-**WhoKnowsBall** is a sports betting skill-tracking app that calculates a proprietary **BKS (Ball Knowing Score)** for each bet. Users don't wager real money - instead, the app measures betting skill through the BKS algorithm.
+**WhoKnowsBall** is a sports betting skill-tracking app that calculates a proprietary **BKS (Ball Knowing Score)** for each bet, grading bettors on how effective and accurate their sports betting strategies are. This proprietary "BKS" score serves as the nucleus/differentiator of the app, allowing users to engage in friendly competition with one another in ways unavailable via other sports betting apps. 
+
+Currently, there exists no standardized metric for sports bettors to compare one another’s betting prowess besides win/loss ratios and ROI. And while these are reliable proof points, win/loss ratios can be manipulated with easy bets, and ROI can be a sensitive metric as users may 1) want to keep it private, and 2) may be easily gamed if a bettor bets small amounts (the average bettor also generally loses money). Thus, BKS fills a market need to provide users with a more comprehensive, privacy-safe, and standardized metric to effectively compete with their friends and answer the question "Who Knows Ball?" once and for all. 
+
+Note: Users don't wager real money - instead, the app measures betting skill through the BKS algorithm. Users input an arbitrary dollar amount to determine a BKS (safeguards implemented in algo to prevent artifically high bets from generating inflated scores).
 
 ### Core Value Proposition
 - Quantify betting skill objectively (not just win/loss)
-- Social competition via leaderboards
+- Social competition 
 - Track improvement over time
 - No real money = no gambling regulations
 
