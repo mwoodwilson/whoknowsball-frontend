@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build
+ios/build/
+ios/Pods/
+android/build/
+android/.gradle/
+android/app/build/
+*.jsbundle
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+
+# Metro
+.metro-health-check*
+
+# Misc
+*.orig
+*.bak

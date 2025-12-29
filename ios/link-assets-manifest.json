@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/BebasNeue-Regular.ttf",
+      "sha1": "8b3aaeb978f3cb5f575860774b50c332338563c1"
+    },
+    {
+      "path": "assets/fonts/JetBrainsMono-Medium.ttf",
+      "sha1": "47efe4c08ce765af0843b68eb390fdda14e2f351"
+    },
+    {
+      "path": "assets/fonts/Teko-Bold.ttf",
+      "sha1": "12e1f1a848eca8261b9a329e567941b31f67c477"
+    },
+    {
+      "path": "assets/fonts/Teko-Medium.ttf",
+      "sha1": "837ebf94edac6785a77ae9460fbfc7512ba7e0b1"
+    },
+    {
+      "path": "assets/fonts/Teko-SemiBold.ttf",
+      "sha1": "f9ee7b82d10ccaef560ba448be168d75e83264c2"
+    }
+  ]
+}
