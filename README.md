@@ -17,17 +17,17 @@
 
 ## The Problem
 
-In every group chat, every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims they "called" the Chiefs winning in OT, and points to this as proof of their ball knowledge, how can you argue? How do you prove them wrong, and reposition yourself as the superior ball knower? And most importantly, how do you do the impossible- get a chiefs fan to stop talking?
+In every group chat, sports bar, and/or comment section among sports fans, there exists (in one form or another) discussions that can simply be reduced to the same core question: who actually "knows ball"? A term of endearment, "knowing ball" has evolved into a universally understood term amongst young adults to describe someone with a superior grasp of sports analytics, strategy, and history, and they employ this knowledge to effectively predict outcomes of games. This has understandably led to sports betting being a loosely quantifiable method of measuring "ball knowledge", with bettors pointing to metrics like ROI and win/loss ratios as proof of their ball knowledge.
 
-Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or sweats a wild ten legger through Sunday Night Football.
+An issue arises though as betting apps track money, and **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or can sweat a wild ten leg parlay through OT in Sunday Night Football.
 
-There's currently no standardized way to measure sports betting intelligence, leaving all of these questions unanswered. Until now.
+There's currently no standardized way to measure sports betting intelligence, leaving a sizable market gap for a more universal method of quantifying "ball knowledge" among a passionate, engaged audience of sports fans. Until now.
 
 ---
 
 ## The Solution
 
-WhoKnowsBall is a no-cost, competitive sports betting app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency. A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: Who Knows Ball?
+WhoKnowsBall is a no-cost, competitive sports betting app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency. A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: Who knows ball?
 
 The BKS algorithm evaluates bets across multiple dimensions:
 
@@ -118,26 +118,28 @@ The BKS algorithm evaluates bets across multiple dimensions:
 
 ## 🧠 How This Got Built
 
-**I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product, but I've never done it in my spare time.**
+**I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product, but I've never applied this skillset to building something in my spare time. I am also a hopelessly passionate Washington sports fan, and I participate in several fantasy football leagues with my friends + coworkers.**
 
-It began with a theoretical metric that I came up with ad hoc, while arguing with my friends in our fantasy football group chat. My friends and I enjoy casual sports betting, and constantly argue over "who knows ball". After scouring the internet for a standardized metric of sorts that we could use to compete with one another, I came up short, and thus, "Ball Knowing Score" was created. 
+It began with an argument amongst friends in a fantasy football group chat. My friends and I enjoy casual sports betting, and constantly challenge one another over "who knows ball" more than the other. People were posting screenshots of bet slips, their YTD ROI, and their W:L ratio as proof. I realized while sifting through the nonsense, that there was always something missing- ROI didn't account for number of bets, W:L ratio ignored bankroll and bet types, and so on. After scouring dozens of betting apps and spending hours on the internet in search of a metric that included all of these different dimensions, I realized nothing like it existed. There was no way to quantify a bettors skill across their entire strategy, and more importantly, no way for me to legitimately prove my "ball knowledge" to my friends. Thus, "Ball Knowing Score (BKS)" was created. 
 
-In its first iteration, it was a simple composite metric that balanced several distinct aspects of a users bet based on their importance, and generated a number from 1-10. Fast forward 3 months, and it has evolved into a complex algorithm that integrates these aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. 
+In its first iteration, BKS was a simple composite metric that included wager, win/loss, bet type, and odds data, generating a number from 1-10. Fast forward 3 months, and it has evolved into a complex algorithm that integrates several additional aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. It serves as the nuclues of the WhoKnowsBall app.
 
-As this project progressed and my technical knowledge expanded, I was able to execute something in ~3 months that previously would have taken years. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. Once completed, I employed two critical tools that enabled this build: Claude Opus 4.5 and Claude Code.
+I wrote the PRD and designed the vision, architecture, database schema, and UI. Once I was confident I had a legitimate plan for the MVP, I began building, teaching myself new concepts + skills through painstaking trial and error. I eventually was able to ship something in ~3 months that would have previously taken me years. 
 
-**I utilized Claude Opus 4.5 as my Associate Product Manager:** 
-- Organined, planned, and structured tasks to be deployed with Claude Code
-- Generated detailed prompts using the Master-Clone Architecture, employing task mode + sub agents to speed up production and iterate quickly
-- Assisted with QA and translating errors into actionable steps
-- Soothed my frustration when I repeatedly (accidentally) hit shift + enter to start a new line in claude code, instead of \ + enter 
+Two tools made this possible: Claude Code and Claude Opus 4.5.
 
-**I utilized Claude Code as my full-stack engineer:** 
-- Built full-stack app infra, using task mode + sub agents via MCA to generate production ready code
-- Integrated multiple external APIs
-- Built parlay validation engine
-- Implemented BKS algorithm
-- Generated and updated shared context docs for frontend + backend production, ensuring consistency across sub-agents
+**Claude Opus 4.5: Associate Product Manager:** 
+- Organized, planned, and structured tasks to be deployed with Claude Code
+- Generated detailed prompts using the Master-Clone Architecture (task mode + sub agents)
+- Assisted with QA and translated errors into actionable fixes
+- Soothed my frustration when I repeatedly (accidentally) hit 'Shift+Enter' instead of '\+Enter' to start a new line in Claude Code
+
+**Claude Code: Full-Stack Engineer:** 
+- Built full-stack infrastructure using MCA prompts with task mode + sub-agents
+- Integrated external APIs (The Odds API, API-Sports, Supabase)
+- Built parlay validation engine with sportsbook-style rules
+- Implemented the BKS algorithm
+- Maintained shared context docs across frontend and backend for sub-agent consistency
 
 ### My Process
 
@@ -149,12 +151,12 @@ As this project progressed and my technical knowledge expanded, I was able to ex
       │                    │                    │                    │
       ▼                    ▼                    ▼                    ▼
   Product          Architecture          Implementation         Debug &
-  Strategy         & Schema              via AI                 Iterate
+  Strategy         & Schema              via AI                 Iterate (supported by AI)
 ```
 
-### What I Actually Did
+### Overview of Each Phase
 
-| Phase | My Contribution |
+| Phase | My Work |
 |-------|-----------------|
 | **Product Vision** | Conceived BKS concept, defined target users, scoped MVP |
 | **Technical Specs** | Wrote PRD with database schema, API contracts, algorithm math |
@@ -167,9 +169,9 @@ As this project progressed and my technical knowledge expanded, I was able to ex
 
 **AI doesn't replace the need to understand systems, and will never replace human perspective/curation. But it can amplify it.**
 
-This project took 200+ hours to complete. I'd estimate I spent half of that learning new concepts and correcting assumptions Claude Code and Opus made on my behalf. These tools enabled me in ways not previously possible, but they are fundamentally designed for computational efficiency. They will always fill gaps with probabilistic assumptions rather than proactively flagging uncertainty. Left unchecked, these can compound into a tasteless product that may be 70-80% technically sound but lacks true usability (Note- I eventually had to add a templatized addendum to all prompts: "do not make assumptions, ask for clarification"). The exigent gap between technically sound and truly usable products is personified by the human perspective; our ability to curate. Simply put: AI can write code, but it can't feel friction.
+This project took 200+ hours to complete. I'd estimate I spent half of that learning new concepts and correcting assumptions Claude Code and Opus made on my behalf. These tools enabled me in ways not previously possible, but they are fundamentally designed for computational efficiency. They will always fill gaps with probabilistic assumptions rather than proactively flagging uncertainty. Left unchecked, these assumptions can compound into a tasteless product that may be 70-80% technically sound but lacks true usability (Note- I eventually had to add a templatized addendum to all prompts: "do not make assumptions, ask for clarification"). The exigent gap between technically sound and truly usable products in the age of AI is personified by the nuance of human perspective, our ability to curate. Simply put: AI can write code, but it can't feel friction.
 
-Obsessive QA and curation were necessary to close this gap in my case, catching the clunky flows and off center labels, among others. In the end these were resolved and the final product became something worth publishing.
+Obsessive QA and curation were necessary to close this gap in my case, catching the clunky flows and off center labels, among others. In the end these were resolved and the final product became something worth shipping.
 
 ---
 
