@@ -2,7 +2,7 @@
 
 # 🏀 WhoKnowsBall
 
-**The metric that settles every sports group chat argument.**
+**Settle the argument in the group chat, once and for all.**
 
 [![React Native](https://img.shields.io/badge/React_Native-0.82-61DAFB?style=flat&logo=react)](https://reactnative.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
