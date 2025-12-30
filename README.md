@@ -44,7 +44,7 @@ The BKS algorithm evaluates bets across multiple dimensions:
 ---
 
 
-### 🎬 The App (Demo)
+## 🎬 The App (Demo)
 
 <p align="center">
   <img src="./docs/screenshots/demo.gif" width="300" alt="App Demo" />
@@ -158,7 +158,9 @@ I utilized Claude Code as my full-stack engineer- directing it with these detail
 
 **AI doesn't replace the need to understand systems, and will never replace human perspective/curation. But it can amplify it.**
 
-The more precisely I understood what specifically I was building, the more I could specify what I wanted, which in turn improved the output. This project took 200+ hours, and I'd estimate 100 of those were spent learning/studying each new concept, and subsequently revising the incorrect assumptions Claude Code and Opus were making on my behalf. As straightforward as defining requirements, making tradeoffs, catching edge cases, and iterating on UX sounds, it is entirely different when you have automated tools at your fingertips that are designed to build as efficiently as possible, which means making data-driven assumptions wherever necessary. This resulted in a need for painstaking review and curation to ensure the critical nuance of human perspective was reflected in all code (and eventually led to templated addendums for all prompts stating assumptions are forbidden). AI accelerated implementation, but the product thinking was entirely human.
+This project took 200+ hours to complete. I'd estimate I spent half of that learning new concepts, and correcting assumptions Claude Code and Opus made on my behalf. These tools enabled me in ways not previously possible, but they are fundamentally designed for computational efficiency- they will always fill gaps with probabilistic assumptions rather than proactively flagging uncertainty (or just refusing to answer). If these assumptions are left unchecked, they can compound into a tasteless product that may be ~70-80% technically sound but lacks true usability (Note- I eventually had to add a templatized addendum to all prompts: "do not make assumptions, ask for clarification"). The exigent gap between technically sound and truly usable can be personified by the criticality of the human perspective, and our ability to curate. Simply put: AI can write code, but it can't feel friction.
+
+Obsessive QA and curation were necessary to close this gap, catching the clunky flows and off center labels, among others. In the end these were resolved and the final product became something worth publishing.
 
 ---
 
