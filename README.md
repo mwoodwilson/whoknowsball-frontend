@@ -17,9 +17,9 @@
 
 ## The Problem
 
-Every sports fan thinks they know ball. In every group chat, in every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims he "called" the Chiefs winning in OT and points to this as proof of his/her superior ball knowledge, how can you argue? How can you prove them wrong? And how do you do the impossible- get a chiefs fan to stop talking?
+In every group chat, every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims they "called" the Chiefs winning in OT, and points to this as proof of their ball knowledge, how can you argue? How do you prove them wrong, and reposition yourself as the superior ball knower? And most importantly, how do you do the impossible- get a chiefs fan to stop talking?
 
-Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or sweats a wild ten legger through sunday night football.
+Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or sweats a wild ten legger through Sunday Night Football.
 
 There's currently no standardized way to measure sports betting intelligence, leaving all of these questions unanswered. Until now.
 
@@ -27,17 +27,17 @@ There's currently no standardized way to measure sports betting intelligence, le
 
 ## The Solution
 
-WhoKnowsBall is an app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency. A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: Who Knows Ball?
+WhoKnowsBall is a no-cost, competitive sports betting app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency. A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: Who Knows Ball?
 
 The BKS algorithm evaluates bets across multiple dimensions:
 
 | Dimension | What It Measures |
 |-----------|------------------|
-| **Difficulty** | Were you betting heavy favorites or finding value in underdogs? |
-| **Complexity** | Simple moneyline or sophisticated multi-leg parlay? |
+| **Difficulty** | Were you betting heavy favorites or finding unseen value in underdogs? |
+| **Complexity** | Are you firing off simple moneylines or sweating multi-leg parlays? |
 | **Accuracy** | Did you beat the closing line (CLV)? |
-| **Stake Significance** | Are you putting conviction behind your picks? |
-| **Context** | Game importance, market efficiency, timing |
+| **Stake Significance** | Are you putting conviction behind your picks, or playing it safe with low wagers? |
+| **Context** | Additional factors: Game importance, market efficiency, timing |
 
 **No real money. No gambling. Just proof of who actually knows ball.**
 
@@ -62,12 +62,12 @@ The BKS algorithm evaluates bets across multiple dimensions:
 
 ### Features
 
-- **📊 Real-Time Odds** — Live lines from FanDuel, DraftKings, and BetMGM via The Odds API
-- **🏈 Multi-Sport Coverage** — NFL, NBA, MLB, NHL
+- **📊 Real-Time Odds** — Live lines from FanDuel, DraftKings, and BetMGM via integration with The Odds API
+- **🏈 Multi-Sport Coverage** — NFL, NCAAF, NBA, MLB, NHL via API-Sports
 - **🎰 Parlay Builder** — Full sportsbook-style validation (no conflicting legs, correlation limits)
-- **📈 Performance Analytics** — Time-series charts, streak tracking, sport-by-sport breakdown
+- **📈 Performance Analytics** — Time-series charts, streak tracking, sport-by-sport breakdown, player badges
 - **🏆 Leaderboards** — Compete with friends and prove your ball knowledge
-- **🔐 Secure Auth** — Email/password, Google, and Apple sign-in via Supabase
+- **🔐 Secure Auth** — Email/password via supabase, Google / Apple TBD
 
 ---
 
@@ -118,17 +118,26 @@ The BKS algorithm evaluates bets across multiple dimensions:
 
 ## 🧠 How This Got Built
 
-**I'm a Product Lead at Google. I don't write production code, and I have only a limited understanding of python at most. But I built this app anyways because I believed there was a significant market gap in a lucrative space where I am both a passionate fan and customer myself.**
+**I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product, but I've never done it in my spare time.**
 
-It began with a theoretical metric that I came up with ad hoc, while arguing with my friends in our fantasy football group chat: Ball Knowing Score. In its first iteration, it was a simple composite metric that balanced several distinct aspects of a users bet based on their importance, and generated a number from 1-10. Fast forward 6 months, and it has evolved into a complex algorithm that integrates these aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. 
+It began with a theoretical metric that I came up with ad hoc, while arguing with my friends in our fantasy football group chat. My friends and I enjoy casual sports betting, and constantly argue over "who knows ball". After scouring the internet for a standardized metric of sorts that we could use to compete with one another, I came up short, and thus, "Ball Knowing Score" was created. 
 
-My ability to imagine, define, and execute hinged on my technical skillset. As this project progressed and my technical knowledge expanded, I was able to execute something in ~6 months that previously would have taken years.
+In its first iteration, it was a simple composite metric that balanced several distinct aspects of a users bet based on their importance, and generated a number from 1-10. Fast forward 3 months, and it has evolved into a complex algorithm that integrates these aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. 
 
-Two critical tools enabled this build: Claude Opus 4.5 and Claude Code. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. Once completed, I deployed these tools to help bring this vision to life. 
+As this project progressed and my technical knowledge expanded, I was able to execute something in ~3 months that previously would have taken years. I wrote the PRD and designed the vision, architecture, database schema, and UI for the app, drinking from the technical firehose as I went. Once completed, I employed two critical tools that enabled this build: Claude Opus 4.5 and Claude Code.
 
-I utilized claude Opus 4.5 as my Associate Product Manager- organinizing, planning, and structuring tasks to be deployed with Claude Code. Generating detailed prompts using the Master-Clone Architecture to speed up production and iterate quickly. Assisting with QA and translating errors into actionable steps. 
+**I utilized Claude Opus 4.5 as my Associate Product Manager:** 
+- Organined, planned, and structured tasks to be deployed with Claude Code
+- Generated detailed prompts using the Master-Clone Architecture, employing task mode + sub agents to speed up production and iterate quickly
+- Assisted with QA and translating errors into actionable steps
+- Soothed my frustration when I repeatedly (accidentally) hit shift + enter to start a new line in claude code, instead of \ + enter 
 
-I utilized Claude Code as my full-stack engineer- directing it with these detailed prompts, reviewing its every output, catching bugs, and iterating until the app actually worked. Being the Product Lead and a potential user/customer of the app gave me the dual perspective necessary to ensure that not only did it work, but it was actually **fun** to use.
+**I utilized Claude Code as my full-stack engineer:** 
+- Built full-stack app infra, using task mode + sub agents via MCA to generate production ready code
+- Integrated multiple external APIs
+- Built parlay validation engine
+- Implemented BKS algorithm
+- Generated and updated shared context docs for frontend + backend production, ensuring consistency across sub-agents
 
 ### My Process
 
@@ -233,15 +242,7 @@ src/
 
 ## 👋 About Me
 
-**Matt Wilson** — Product Manager exploring the frontier of AI-augmented development.
-
-I built WhoKnowsBall to prove answer two questions: 
-
-**1. Can a PM with the necessary vision, technical skillset, and business acumen build an app despite not having direct programming experience?**
-
-**2. Do I know more about ball than my friends?**
-
-The answer to both of these questions is yes.
+**Matt Wilson** — Product Lead at Google, exploring the frontier of AI-augmented development. 10 total years of experience in tech + media, 3 at Hulu and 4.5 at Google. Certified Ball Knower.
 
 <div align="center">
 
@@ -262,7 +263,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Built with my buddy Claude, who joined me in mu neverending quest to triumph over my friends and settle arguments in our fantasy sports group chat.**
+**Built with my buddy Claude, who joined me in my neverending quest to triumph over my friends and settle arguments in our fantasy sports group chat.**
 
 *Want to know more about my process? Happy to walk through it.*
 
