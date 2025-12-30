@@ -9,7 +9,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js)](https://nodejs.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat&logo=supabase)](https://supabase.com/)
 
-[The Problem](#the-problem) • [The Solution](#the-solution) • [App (Demo)](#-app-demo) • [Architecture](#-how-this-got-built) • [How And why I Built This](#-how-and-why-i-built-this) • [Contact](#-about-me)
+[The Problem](#the-problem) • [The Solution](#the-solution) • [App (Demo)](#-app-demo) • [Architecture](#-technical-architecture) • [How And why I Built This](#-how-and-why-i-built-this) • [Contact](#-about-me)
 
 </div>
 
