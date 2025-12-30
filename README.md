@@ -9,7 +9,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js)](https://nodejs.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat&logo=supabase)](https://supabase.com/)
 
-[The Problem](#the-problem) • [The Solution](#the-solution) • [App (Demo)](#-app-demo) • [Architecture](#-technical-architecture) • [How I Built This](#-how-this-got-built) • [Contact](#-about-me)
+[The Problem](#the-problem) • [The Solution](#the-solution) • [App (Demo)](#-app-demo) • [Architecture](#-how-this-got-built) • [How And why I Built This](#-how-and-why-i-built-this) • [Contact](#-about-me)
 
 </div>
 
@@ -120,7 +120,7 @@ These dimensions, combined with several different anti-gaming safeguards and con
 
 ---
 
-## 🧠 How This Got Built
+## 🧠 How and Why I Built This
 
 **I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product, but I've never applied this skillset to building something in my spare time. I am also a hopelessly passionate Washington sports fan, and I participate in several fantasy football leagues with my friends + coworkers.**
 
@@ -137,7 +137,7 @@ Two tools made this possible: Claude Opus 4.5 and Claude Code.
 - Generated detailed prompts using the Master-Clone Architecture (task mode + sub agents)
 - Assisted with QA and translated errors into actionable fixes
 - Reviewed, critiqued, and refined human-generated documentation (PRD, database schema, etc.)
-- Soothed my frustration when I repeatedly (accidentally) hit 'Shift+Enter' instead of '\+Enter' to start a new line in Claude Code
+- Soothed my frustration when I repeatedly (accidentally) hit 'Shift+Enter' instead of ' \ +Enter' to start a new line in Claude Code
 
 **Claude Code: Full-Stack Engineer:** 
 - Built full-stack infrastructure using MCA prompts with task mode + sub-agents
