@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏀 WhoKnowsBall
+# 🏀 Who Knows Ball?
 
 **Settle the argument in the group chat, once and for all.**
 
