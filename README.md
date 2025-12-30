@@ -17,19 +17,19 @@
 
 ## The Problem
 
-Every sports fan thinks they know ball. In every group chat, in every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims he "called" the Chiefs winning in OT and points to this as proof of superior ball knowledge, how can you argue with him? How can you prove him wrong, and do the impossible- get a chiefs fan to stop talking?
+Every sports fan thinks they know ball. In every group chat, in every sports bar, there exists the same discussion amongst friends- who actually knows ball? When your buddy claims he "called" the Chiefs winning in OT and points to this as proof of his/her superior ball knowledge, how can you argue? How can you prove them wrong? And how do you do the impossible- get a chiefs fan to stop talking?
 
-Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs.
+Betting apps track money. But **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or sweats a wild ten legger through sunday night football.
 
-There's no standardized way to measure sports betting intelligence. Until now.
+There's currently no standardized way to measure sports betting intelligence, leaving all of these questions unanswered. Until now.
 
 ---
 
 ## The Solution
 
-WhoKnowsBall is an app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency.
+WhoKnowsBall is an app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency. A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: Who Knows Ball?
 
-The BKS algorithm evaluates picks across multiple dimensions:
+The BKS algorithm evaluates bets across multiple dimensions:
 
 | Dimension | What It Measures |
 |-----------|------------------|
