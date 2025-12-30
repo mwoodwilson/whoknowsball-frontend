@@ -9,7 +9,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat&logo=node.js)](https://nodejs.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat&logo=supabase)](https://supabase.com/)
 
-[The Problem](#the-problem) • [The Solution](#the-solution) • [The App (Demo)](#-the-app) • [Architecture](#-technical-architecture) • [How I Built This](#-how-this-got-built) • [Contact](#-about-me)
+[The Problem](#the-problem) • [The Solution](#the-solution) • [App (Demo)](#-app-demo) • [Architecture](#-technical-architecture) • [How I Built This](#-how-this-got-built) • [Contact](#-about-me)
 
 </div>
 
@@ -44,13 +44,13 @@ The BKS algorithm evaluates bets across multiple dimensions:
 ---
 
 
-## 🎬 The App (Demo)
+## 🎬 App Demo
 
 <p align="center">
   <img src="./docs/screenshots/demo.gif" width="300" alt="App Demo" />
 </p>
 
-## 📱 The App (Screenshots)
+## 📱 App Screenshots
 
 | Home | My Bets | Leaderboard |
 |:----:|:-------:|:-----------:|
