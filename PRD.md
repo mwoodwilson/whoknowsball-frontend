@@ -20,13 +20,15 @@
 
 # 1. Executive Summary
 
+This document outlines the frontend product specifications and requirements for a free, no-cost sports betting app called "WhoKnowsBall", centered around a proprietary metric called "Ball Knowing Score" which grades a user based on their sports betting skill. No metric currently exists that provides this type of grading for sports bettors, indicating a significant market gap in an [industry currently valued at ~$100B, and predicted to grow to $187B by 2030](https://www.grandviewresearch.com/industry-analysis/sports-betting-market-report). Ball Knowing Score allows users to effectively compete with their friends and family and prove their "ball knowledge", fulfilling a [top motivator for participation in the sports betting industry.](https://www.sportsbettingdime.com/guides/research/survey-sports-betting-motivations/)
+
 ## 1.1 Product Vision
 
-**WhoKnowsBall** is a gamified sports betting skill-tracking platform that quantifies betting acumen through a proprietary scoring algorithm. Unlike traditional sportsbooks, users don't wager real money—instead, they compete on a **Ball Knowing Score (BKS)** that measures the quality and skill of their betting decisions.
+**WhoKnowsBall** is a gamified sports betting and skill-tracking platform that quantifies betting acumen through a proprietary scoring algorithm. This algorithm generates a BKS, or "Ball Knowing Score", designed to measure a sports bettors bet quality and skill. Unlike traditional sportsbooks, users don't wager real money—instead, they compete via a leaderboard tracking **Ball Knowing Score (BKS)**.
 
 ## 1.2 Problem Statement
 
-Sports bettors lack objective metrics to evaluate their betting skill independent of variance and bankroll fluctuations. Win/loss records fail to capture:
+Sports bettors lack an objective metric to evaluate their betting skill independent of variance and bankroll fluctuations. The two metrics most consistently cited, Win/loss records and ROI, fail to capture:
 - Bet difficulty (underdog vs. favorite)
 - Market timing (closing line value)
 - Risk-adjusted returns
