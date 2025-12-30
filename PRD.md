@@ -1098,7 +1098,7 @@ GET /api/v1/health
         "odds_api": {
           "status": "ok",
           "quota_remaining": 1200,
-          "quota_daily": 1613
+          "quota_daily": 166667
         }
       }
     }
@@ -1146,7 +1146,7 @@ POST /api/v1/jobs/closing-odds/stop
 ┌─────────────────────────────────────────────────────────────────┐
 │ OddsMatchingJob                                                  │
 ├─────────────────────────────────────────────────────────────────┤
-│ Schedule: Every 40 seconds                                      │
+│ Schedule: Every 30 seconds                                      │
 │ Source: The Odds API                                            │
 │                                                                 │
 │ Process:                                                        │
@@ -1307,556 +1307,43 @@ const STATUS_CODES = {
 
 The **Ball Knowing Score (BKS)** is a deterministic algorithm that evaluates betting skill on a 0-100 scale. Unlike simple win/loss tracking, BKS accounts for bet difficulty, market timing, complexity, and outcome margin.
 
-## 4.2 Formula
+## 4.2 Algorithm Components
+
+The BKS algorithm evaluates bets across six dimensions:
+
+1. **Difficulty** — How hard was the bet to win? (Based on fair probability)
+2. **Complexity** — How sophisticated was the bet construction? (Parlay legs)
+3. **Payout** — How much conviction did you show? (Stake-weighted return multiple)
+4. **Accuracy** — Did you beat the market? (Closing line value)
+5. **Stake** — How significant was the wager? (Logarithmic scaling)
+6. **Context** — How important was the game? (Playoffs > regular season)
+
+## 4.3 Proprietary Notice
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     BKS MASTER FORMULA                           │
-└─────────────────────────────────────────────────────────────────┘
-
-BKS = Base × M
-
-Where:
-  Base = 100 × Σ(wᵢ × Cᵢ)
-  M = Outcome Multiplier
-
-┌─────────────────────────────────────────────────────────────────┐
-│                    COMPONENT WEIGHTS                             │
+│                    PROPRIETARY ALGORITHM                         │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  Base = 100 × (0.45×D + 0.18×C + 0.13×P + 0.10×A + 0.10×S + 0.04×K)
+│  The BKS algorithm formula, component weights, and calculation  │
+│  logic are proprietary intellectual property.                   │
 │                                                                 │
-│  Component    Weight   Description                              │
-│  ─────────────────────────────────────────────────────────────  │
-│  D (Difficulty)  45%   Fair win probability (harder = higher)   │
-│  C (Complexity)  18%   Parlay legs + correlation adjustment     │
-│  P (Payout)      13%   Return multiple (capped at 10x)          │
-│  A (Accuracy)    10%   Closing Line Value (market timing)       │
-│  S (Stake)       10%   Stake significance (user percentile)     │
-│  K (Context)      4%   Game importance (regular → finals)       │
+│  This section has been redacted from the public repository.     │
 │                                                                 │
-│  Total:         100%                                            │
+│  For licensing inquiries:                                       │
+│    Email: matthew.wood.wilson@gmail.com                         │
+│    LinkedIn: linkedin.com/in/matthewwoodwilson                  │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## 4.3 Component Specifications
-
-### 4.3.1 Difficulty (D) - 45%
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    DIFFICULTY COMPONENT                          │
-└─────────────────────────────────────────────────────────────────┘
-
-Purpose: Reward betting on underdogs and avoid inflating scores
-         for heavy favorites. HARDER bets get HIGHER D scores.
-
-Formula:
-  D = 1 - fair_probability(selection)
-
-  Where fair_probability is the de-vigged probability of winning.
-  Inverting ensures harder bets (lower win probability) score higher.
-
-De-vigging Process (2-way market):
-  1. Convert American odds to decimal:
-     if (odds > 0): decimal = 1 + (odds / 100)
-     else: decimal = 1 + (100 / |odds|)
-
-  2. Calculate raw implied probabilities:
-     rawA = 1 / decimal_A
-     rawB = 1 / decimal_B
-
-  3. Remove vig proportionally:
-     total = rawA + rawB  // Typically 1.03-1.10
-     fair_p_A = rawA / total
-     fair_p_B = rawB / total
-
-  4. D = 1 - fair_probability of selected outcome
-
-De-vigging Process (3-way market):
-  Same as above but with three outcomes (home, away, draw)
-
-Example:
-  Home: -150 → decimal = 1.667 → raw = 0.60
-  Away: +130 → decimal = 2.30 → raw = 0.435
-  Total = 1.035
-  Fair home = 0.60 / 1.035 = 0.58
-  Fair away = 0.435 / 1.035 = 0.42
-
-  If betting home (favorite): D = 1 - 0.58 = 0.42 (easier = lower D)
-  If betting away (underdog): D = 1 - 0.42 = 0.58 (harder = higher D)
-
-Parlays:
-  p_parlay = p_leg1 × p_leg2 × ... × p_legN (capped at 12 legs)
-  D_parlay = 1 - p_parlay
-
-Range: [0, 1]
-```
-
-### 4.3.2 Complexity (C) - 18%
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    COMPLEXITY COMPONENT                          │
-└─────────────────────────────────────────────────────────────────┘
-
-Purpose: Reward multi-leg parlays while penalizing highly correlated
-         same-game parlays (SGP).
-
-Formula:
-  C = min((L - 1) × 0.3, 0.9) × (1 - 0.5 × ρ)
-
-  Where:
-  - L = number of legs (capped at 12)
-  - ρ = correlation factor [0, 1]
-
-Base Complexity (before correlation):
-  baseComplexity = min((L - 1) × 0.3, 0.9)
-
-  legs    baseComplexity
-  ───────────────────────
-  1       0.00  (single bet)
-  2       0.30
-  3       0.60
-  4       0.90  (capped)
-  5+      0.90  (capped)
-
-Correlation Adjustment:
-  Higher correlation REDUCES complexity score (penalizes correlated bets)
-  C = baseComplexity × (1 - 0.5 × correlation)
-
-  Where correlation ∈ [0, 1]:
-  - 0.0: Independent legs (different games) - full complexity credit
-  - 0.5: Moderate correlation - 75% complexity credit
-  - 1.0: Perfect correlation - 50% complexity credit
-
-Clamping:
-  C = clamp(C, 0, 1)
-
-Example:
-  3-leg parlay, same game, correlation = 0.6
-  baseComplexity = min((3-1) × 0.3, 0.9) = 0.60
-  C = 0.60 × (1 - 0.5 × 0.6) = 0.60 × 0.70 = 0.42
-
-Range: [0, 1] (single bets always C = 0)
-```
-
-### 4.3.3 Payout (P) - 13%
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      PAYOUT COMPONENT                            │
-└─────────────────────────────────────────────────────────────────┘
-
-Purpose: Reward higher-risk bets with conviction bonus based on stake.
-         Includes difficulty-scaled ceiling to prevent gaming.
-
-Master Formula:
-  P = clamp((PM / 10) × CM, 0, P_max)
-
-  Where:
-  - PM = payout multiple (decimal_odds - 1)
-  - CM = conviction multiplier = 1.0 + (10.0 × SF)
-  - SF = stake factor = log₁₀(stake + 9) / log₁₀(10009)
-  - P_max = 1.0 + (D × 2.0) = difficulty-scaled ceiling
-
-Step 1: Calculate Payout Multiple (PM)
-  Single bet: PM = decimal_odds - 1
-  Parlay: PM = (product of leg decimals) - 1
-
-Step 2: Calculate Stake Factor (SF)
-  SF = log₁₀(stake + 9) / log₁₀(10009)
-
-  stake    SF      CM (conviction)
-  ───────────────────────────────────
-  $10      0.32    4.2×
-  $50      0.45    5.5×
-  $100     0.51    6.1×
-  $500     0.68    7.8×
-  $1000    0.75    8.5×
-  $5000    0.93    10.3×
-  $10000   1.00    11.0×
-
-Step 3: Calculate Difficulty-Scaled Ceiling
-  P_max = 1.0 + (D × 2.0)
-
-  - Low difficulty (D=0.3): P_max = 1.6
-  - Medium difficulty (D=0.5): P_max = 2.0
-  - High difficulty (D=0.7): P_max = 2.4
-  - Max difficulty (D=1.0): P_max = 3.0
-
-  This prevents easy bets with low conviction from gaming the system.
-
-Step 4: Calculate Final P
-  P_unclamped = (PM / 10) × CM
-  P = clamp(P_unclamped, 0, P_max)
-
-American to Decimal Conversion:
-  if (odds > 0): decimal = 1 + (odds / 100)
-  else: decimal = 1 + (100 / |odds|)
-
-Example:
-  Bet: +200 odds, $100 stake, D = 0.4
-  PM = 3.0 - 1 = 2.0
-  SF = log₁₀(109) / log₁₀(10009) = 0.51
-  CM = 1.0 + (10.0 × 0.51) = 6.1
-  P_unclamped = (2.0 / 10) × 6.1 = 1.22
-  P_max = 1.0 + (0.4 × 2.0) = 1.8
-  P = clamp(1.22, 0, 1.8) = 1.22
-
-Range: [0, P_max] where P_max ∈ [1.0, 3.0]
-```
-
-### 4.3.4 Accuracy (A) - 10%
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     ACCURACY COMPONENT                           │
-│                  (Closing Line Value - CLV)                      │
-└─────────────────────────────────────────────────────────────────┘
-
-Purpose: Reward bets placed at better odds than the closing line.
-         This is the gold standard for evaluating betting skill.
-
-Calculation (using fair probability difference):
-  Δp = p_open - p_close
-
-  Where:
-  - p_open = de-vigged fair probability at bet placement
-  - p_close = de-vigged fair probability at game start
-
-  Δp is clamped to [-0.15, +0.15]
-
-Mapping to A:
-  if Δp >= 0:
-    A = 0.5 + 0.5 × (Δp / 0.15)
-  else:
-    A = 0.5 - 0.5 × (|Δp| / 0.15)
-
-  A = clamp(A, 0, 1)
-
-Interpretation:
-  - Δp > 0: Line moved AGAINST you (you got +EV)
-  - Δp = 0: Line unchanged (neutral)
-  - Δp < 0: Line moved WITH you (you got -EV)
-
-Δp to A Mapping:
-  Δp       A        Interpretation
-  ─────────────────────────────────
-  +0.15    1.0      Exceptional timing (max +EV)
-  +0.10    0.83     Excellent timing
-  +0.05    0.67     Good timing
-   0.00    0.50     Market average
-  -0.05    0.33     Below average
-  -0.10    0.17     Poor timing
-  -0.15    0.0      Very poor timing (max -EV)
-
-De-vigging Process (2-way market):
-  rawA = 1 / decimal_A
-  rawB = 1 / decimal_B
-  total = rawA + rawB
-  fair_prob_A = rawA / total
-  fair_prob_B = rawB / total
-
-Edge Cases:
-  - No closing snapshot available: A = 0.5 (neutral default)
-  - Missing opposing odds for de-vig: A = 0.5 (neutral)
-  - Parlay: multiply per-leg fair probabilities
-
-Range: [0, 1]
-```
-
-### 4.3.5 Stake Significance (S) - 10%
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                  STAKE SIGNIFICANCE COMPONENT                    │
-└─────────────────────────────────────────────────────────────────┘
-
-Purpose: Reward conviction using a fixed logarithmic scale.
-         Higher stakes indicate higher confidence in the bet.
-
-Formula:
-  S = log₁₀(stake + 9) / log₁₀(10009)
-
-  Where stake is the dollar amount wagered.
-
-Stake to S Mapping:
-  stake       S
-  ─────────────────
-  $1          0.25
-  $10         0.32
-  $25         0.38
-  $50         0.45
-  $100        0.51
-  $250        0.61
-  $500        0.68
-  $1000       0.75
-  $2500       0.85
-  $5000       0.93
-  $10000      1.00
-
-Properties:
-  - Logarithmic scale prevents linear stake gaming
-  - Same formula used in Payout's conviction multiplier (CM)
-  - Works for all users without requiring history
-  - $50 default assumed if stake is missing
-
-Clamping:
-  S = clamp(S, 0, 1)
-
-Example:
-  $150 stake
-  S = log₁₀(150 + 9) / log₁₀(10009)
-  S = log₁₀(159) / log₁₀(10009)
-  S = 2.201 / 4.000
-  S = 0.55
-
-Range: [0, 1]
-```
-
-### 4.3.6 Context (K) - 4%
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     CONTEXT COMPONENT                            │
-└─────────────────────────────────────────────────────────────────┘
-
-Purpose: Slightly boost bets on high-stakes games where
-         outcomes are harder to predict.
-
-Default Context Mapping (from K_MAP_DEFAULT):
-  context         K       Description
-  ──────────────────────────────────────────────
-  preseason       0.2     Exhibition games
-  regular         0.4     Regular season
-  playoffs        0.7     Playoff games
-  finals          1.0     Championship series/games
-
-Extensibility:
-  Additional context values can be configured via K_MAP_JSON
-  environment variable to add custom mappings.
-
-Default: K = 0.4 (regular season) if context not specified
-
-Clamping:
-  K = clamp(K, 0, 1)
-
-Range: [0.2, 1.0] (based on default mappings)
-```
-
-## 4.4 Outcome Multiplier (M)
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                   OUTCOME MULTIPLIER                             │
-└─────────────────────────────────────────────────────────────────┘
-
-The multiplier adjusts Base score based on bet outcome.
-
-┌─────────────────────────────────────────────────────────────────┐
-│                    SETTLED BETS                                  │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  WIN:                                                           │
-│    M = 0.60 + 0.40 × clamp(z/3, 0, 1)                           │
-│                                                                 │
-│    Where z = cover_margin / σ (z-score of cover)                │
-│    cover_margin = (actual_margin - spread)                      │
-│    σ = sport variance (see below)                               │
-│                                                                 │
-│    Interpretation:                                              │
-│    - Close win (z ≈ 0): M ≈ 0.60                                │
-│    - Solid win (z ≈ 1.5): M ≈ 0.80                              │
-│    - Blowout win (z ≥ 3): M = 1.00                              │
-│                                                                 │
-│  LOSS:                                                          │
-│    M = 0.10 + 0.40 × (1 - clamp(|z|/3, 0, 1))                   │
-│                                                                 │
-│    Interpretation:                                              │
-│    - Close loss (z ≈ 0): M ≈ 0.50                               │
-│    - Moderate loss (z ≈ -1.5): M ≈ 0.30                         │
-│    - Blowout loss (z ≤ -3): M = 0.10                            │
-│                                                                 │
-│  PUSH:                                                          │
-│    M = 0.55                                                     │
-│                                                                 │
-│  VOID:                                                          │
-│    M = 0.50 (bet not counted in overall BKS)                    │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                   PROVISIONAL BETS                               │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  PENDING (game not started, no score data):                     │
-│    M = 0.50 + (D × 0.45)                                        │
-│                                                                 │
-│    Where D = difficulty component [0, 1]                        │
-│    Range: [0.50, 0.95]                                          │
-│                                                                 │
-│    Interpretation:                                              │
-│    - Easy bet (D=0.3): M ≈ 0.64                                 │
-│    - Medium bet (D=0.5): M ≈ 0.73                               │
-│    - Hard bet (D=0.8): M ≈ 0.86                                 │
-│                                                                 │
-│  LIVE (game in progress, with score data):                      │
-│    M = clamp(0.25 + 0.30×τ + 0.25×tanh(z/2), 0.10, 0.95)        │
-│                                                                 │
-│    Where:                                                       │
-│    - τ = time_elapsed / game_duration ∈ [0, 1]                  │
-│    - z = current_cover_margin / σ                               │
-│                                                                 │
-│    Interpretation:                                              │
-│    - Early game, close: M ≈ 0.40                                │
-│    - Mid game, winning: M ≈ 0.60                                │
-│    - Late game, winning big: M ≈ 0.85                           │
-│                                                                 │
-│    Updates in real-time as game progresses.                     │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────┐
-│                   SPORT VARIANCE (σ)                             │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  Sport                σ      Rationale                          │
-│  ────────────────────────────────────────────────────────────   │
-│  NFL                  1.5    High variance, any given Sunday    │
-│  NCAAF                1.6    Even more unpredictable            │
-│  NBA                  1.0    Moderate variance                  │
-│  NHL                  0.6    Lower scoring, more predictable    │
-│  MLB                  0.7    High variance but large sample     │
-│  Soccer (EPL)         0.5    Low scoring, predictable           │
-│                                                                 │
-│  Higher σ = more forgiving multiplier for close outcomes        │
-│  Lower σ = requires larger margins for same multiplier boost    │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-## 4.5 Complete Calculation Example
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│               EXAMPLE: NFL MONEYLINE BET                         │
-└─────────────────────────────────────────────────────────────────┘
-
-Bet Details:
-  - Game: Chiefs (-180) vs Raiders (+155)
-  - Selection: Raiders (underdog)
-  - Entry odds: +155 (Raiders), -180 (Chiefs)
-  - Closing odds: +145 (Raiders), -165 (Chiefs)
-  - Stake: $150
-  - Context: Regular season
-  - Outcome: Raiders WIN by 7 points
-
-Step 1: Calculate Difficulty (D)
-  Entry decimals:
-    Chiefs: 1 + 100/180 = 1.556 → raw = 0.643
-    Raiders: 1 + 155/100 = 2.55 → raw = 0.392
-  Total = 1.035
-  fair_raiders = 0.392 / 1.035 = 0.379
-  D = 1 - 0.379 = 0.621 (harder bet = higher D)
-
-Step 2: Calculate Complexity (C)
-  Single bet: legs = 1
-  C = min((1-1) × 0.3, 0.9) × (1 - 0.5 × 0)
-  C = 0 (single bets always have C = 0)
-
-Step 3: Calculate Payout (P)
-  PM = decimal - 1 = 2.55 - 1 = 1.55
-  SF = log₁₀(150 + 9) / log₁₀(10009) = 2.201 / 4.000 = 0.55
-  CM = 1.0 + (10.0 × 0.55) = 6.5
-  P_unclamped = (1.55 / 10) × 6.5 = 1.01
-  P_max = 1.0 + (0.621 × 2.0) = 2.24
-  P = clamp(1.01, 0, 2.24) = 1.01
-
-Step 4: Calculate Accuracy (A)
-  Entry: fair_raiders = 0.379
-  Closing decimals:
-    Chiefs: 1 + 100/165 = 1.606 → raw = 0.623
-    Raiders: 1 + 145/100 = 2.45 → raw = 0.408
-  Total_close = 1.031
-  fair_raiders_close = 0.408 / 1.031 = 0.396
-
-  Δp = 0.379 - 0.396 = -0.017
-  A = 0.5 - 0.5 × (0.017 / 0.15) = 0.5 - 0.057 = 0.44
-  (Negative CLV: line moved against us slightly)
-
-Step 5: Calculate Stake Significance (S)
-  S = log₁₀(150 + 9) / log₁₀(10009) = 0.55
-
-Step 6: Calculate Context (K)
-  K = 0.4 (regular season)
-
-Step 7: Calculate Base
-  Base = 100 × (0.45×0.621 + 0.18×0 + 0.13×1.01 +
-                0.10×0.44 + 0.10×0.55 + 0.04×0.4)
-  Base = 100 × (0.279 + 0 + 0.131 + 0.044 + 0.055 + 0.016)
-  Base = 100 × 0.525
-  Base = 52.5
-
-Step 8: Calculate Outcome Multiplier (M)
-  Outcome: WIN
-  cover_margin = 7 points (won by 7)
-  z = 7 / 1.5 = 4.67 (NFL σ = 1.5)
-  M = 0.60 + 0.40 × clamp(4.67/3, 0, 1)
-  M = 0.60 + 0.40 × 1.0 = 1.00
-
-Step 9: Final BKS
-  BKS = min(100, Base × M) = min(100, 52.5 × 1.00) = 52.5
-
-Result: BKS = 52.5 (rounded to 1 decimal)
-
-Interpretation:
-  - Above average score for betting the underdog
-  - High D (0.621) from difficult selection boosted base
-  - P component (1.01) rewarded conviction with $150 stake
-  - Full multiplier from blowout 7-point win
-```
-
-## 4.6 Algorithm Properties
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    ALGORITHM PROPERTIES                          │
-└─────────────────────────────────────────────────────────────────┘
-
-1. DETERMINISM
-   - Same inputs always produce same BKS
-   - No randomness or external factors
-   - Reproducible and auditable
-
-2. RANGE
-   - Theoretical: [0, 100]
-   - Practical: [5, 95]
-   - No soft floors or ceilings
-
-3. DISTRIBUTION (Expected)
-   - Mean: ~45-50
-   - Std Dev: ~15-20
-   - Skilled bettors: 55-70
-   - Elite bettors: 70+
-
-4. MONOTONICITY
-   - Better bets → Higher BKS
-   - Winning > Losing (with margin consideration)
-   - Harder bets > Easier bets
-
-5. FAIRNESS
-   - Normalized across sports (via σ)
-   - Accounts for market efficiency (CLV)
-   - No advantage to bet volume alone
-
-6. STABILITY
-   - Overall BKS = mean of settled bets
-   - Requires ~20+ bets for statistical significance
-   - Rolling windows available (30-day, 90-day)
-```
-
+## 4.4 Key Properties
+
+- **Determinism**: Same inputs always produce the same BKS
+- **Range**: 0-100 (practical range typically 5-95)
+- **Fairness**: Normalized across sports and market conditions
+- **Win > Loss**: Winning always scores higher than losing for identical bets
+- **Skill Rewarded**: Closing line value and difficulty are key factors
 ---
 
 # 5. Database Schema
@@ -2471,7 +1958,7 @@ CREATE TRIGGER on_bet_settled
 | API-Sports (NFL) | 7,500 | 10 | ~500/day |
 | API-Sports (NBA) | 7,500 | 10 | ~500/day |
 | API-Sports (NHL) | 7,500 | 10 | ~500/day |
-| The Odds API | 1,613 | N/A | ~400/day |
+| The Odds API | 166,667 (5M/month) | N/A | ~2,880/day |
 
 ## 6.3 Environment Variables
 
