@@ -17,19 +17,21 @@
 
 ## The Problem
 
-In every group chat, sports bar, and/or comment section among sports fans, there exists (in one form or another) discussions that can be reduced down to the same core question: who actually "knows ball"? A term of endearment, "knowing ball" has evolved into a universally understood term amongst young adult sports fans to describe someone with a superior grasp of sports analytics, strategy, and history, and they employ this knowledge to effectively predict outcomes of games. This has understandably led to sports betting being a loosely quantifiable method of measuring "ball knowledge", with bettors pointing to metrics like ROI and win/loss ratios as proof of their ball knowledge.
+In every group chat, sports bar, or comment section among sports fans, the same debate plays out that can essentially be reduced down to one core question: who actually "knows ball"? 
 
-An issue arises though as betting apps track money, and **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or can sweat a wild ten leg parlay through OT in Sunday Night Football.
+"Knowing ball" is universal shorthand amongst sports fans used to describe someone with a superior grasp of sports analytics, strategy, and history, using this knowledge to effectively predict outcomes. Naturally, sports betting has become a proxy to prove "ball knowledge", with bettors pointing to metrics like ROI and win/loss ratios as proof of their ball knowledge.
 
-There's currently no standardized way to measure sports betting intelligence, leaving a sizable market gap for a more universal method of quantifying "ball knowledge" among a passionate, engaged audience of sports fans. Until now.
+The issue, though, is that betting apps track money, and **money doesn't singularly measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently finds value in underdogs, or can sweat a wild ten leg parlay through OT in Sunday Night Football.
+
+There's currently no standardized, comprehensive metric available to measure sports betting intelligence, leaving a sizable market gap among a passionate, engaged audience of sports fans. Until now.
 
 ---
 
 ## The Solution
 
-WhoKnowsBall is a no-cost, competitive sports betting app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill, not just bankroll size or frequency. A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: Who knows ball?
+WhoKnowsBall is a no-cost, competitive sports betting app built around a proprietary metric called **Ball Knowing Score (BKS)**, a 0-100 rating that quantifies betting skill (not just bankroll size or frequency). A first of it's kind, Ball Knowing Score effectively (and finally) answers the question: "Who knows ball?"
 
-The BKS algorithm evaluates bets across multiple dimensions:
+The **BKS algorithm** evaluates bets across multiple dimensions:
 
 | Dimension | What It Measures |
 |-----------|------------------|
@@ -38,6 +40,8 @@ The BKS algorithm evaluates bets across multiple dimensions:
 | **Accuracy** | Did you beat the closing line (CLV)? |
 | **Stake Significance** | Are you putting conviction behind your picks, or playing it safe with low wagers? |
 | **Context** | Additional factors: Game importance, market efficiency, timing |
+
+These dimensions, combined with several different anti-gaming safeguards and context-aware functionality, grant users the ability to truly measure their effectiveness as a bettor and quantify their ball knowledge.
 
 **No real money. No gambling. Just proof of who actually knows ball.**
 
@@ -120,18 +124,19 @@ The BKS algorithm evaluates bets across multiple dimensions:
 
 **I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product, but I've never applied this skillset to building something in my spare time. I am also a hopelessly passionate Washington sports fan, and I participate in several fantasy football leagues with my friends + coworkers.**
 
-It began with an argument amongst friends in a fantasy football group chat. My friends and I enjoy casual sports betting, and constantly challenge one another over "who knows ball" more than the other. People were posting screenshots of bet slips, their YTD ROI, and their W:L ratio as proof. I realized while sifting through the nonsense, that there was always something missing- ROI didn't account for number of bets, W:L ratio ignored bankroll and bet types, and so on. After scouring dozens of betting apps and spending hours on the internet in search of a metric that included all of these different dimensions, I realized nothing like it existed. There was no way to quantify a bettors skill across their entire strategy, and more importantly, no way for me to legitimately prove my "ball knowledge" to my friends. Thus, "Ball Knowing Score (BKS)" was created. 
+It began with an argument amongst friends in a fantasy football group chat. My friends and I enjoy casual sports betting, and constantly challenge one another over "who knows ball" more than the other. People were posting screenshots of bet slips, their YTD ROI, and their W:L ratio as proof. I realized while sifting through the nonsense, that there was always something missing- ROI didn't account for number of bets, W:L ratio ignored bankroll and bet types, and so on. After scouring dozens of betting apps and spending hours on the internet in search of a metric that included all necessary dimensions, I realized nothing existed. There was no way to quantify a bettors skill across their entire strategy, and more importantly, no way for me to legitimately prove my "ball knowledge" to my friends. Thus, "Ball Knowing Score (BKS)" was created. 
 
-In its first iteration, BKS was a simple composite metric that included wager, win/loss, bet type, and odds data, generating a number from 1-10. Fast forward 3 months, and it has evolved into a complex algorithm that integrates several additional aspects and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. It serves as the nuclues of the WhoKnowsBall app.
+In its first iteration, BKS was a simple composite metric that included wager, win/loss, bet type, and odds data, generating a number from 1-10. Fast forward 3 months, and it has evolved into a complex algorithm that integrates several additional aspects of a user's bet and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. It serves as the nuclues of the WhoKnowsBall app.
 
-I wrote the PRD and designed the vision, architecture, database schema, and UI. Once I was confident I had a legitimate plan for the MVP, I began building, teaching myself new concepts + skills through painstaking trial and error. I eventually was able to ship something in ~3 months that would have previously taken me years. 
+I wrote the PRD and designed the vision, architecture, database schema, and UI. Once I was confident I had a legitimate plan for the MVP, I began building, teaching myself new concepts + skills through painstaking trial and error (insert "drinking from the firehose" metaphor). I eventually was able to ship something in ~3 months that would have previously taken me years. 
 
-Two tools made this possible: Claude Code and Claude Opus 4.5.
+Two tools made this possible: Claude Opus 4.5 and Claude Code.
 
 **Claude Opus 4.5: Associate Product Manager:** 
 - Organized, planned, and structured tasks to be deployed with Claude Code
 - Generated detailed prompts using the Master-Clone Architecture (task mode + sub agents)
 - Assisted with QA and translated errors into actionable fixes
+- Reviewed, critiqued, and refined human-generated documentation (PRD, database schema, etc.)
 - Soothed my frustration when I repeatedly (accidentally) hit 'Shift+Enter' instead of '\+Enter' to start a new line in Claude Code
 
 **Claude Code: Full-Stack Engineer:** 
@@ -169,7 +174,7 @@ Two tools made this possible: Claude Code and Claude Opus 4.5.
 
 **AI doesn't replace the need to understand systems, and will never replace human perspective/curation. But it can amplify it.**
 
-This project took 200+ hours to complete. I'd estimate I spent half of that learning new concepts and correcting assumptions Claude Code and Opus made on my behalf. These tools enabled me in ways not previously possible, but they are fundamentally designed for computational efficiency. They will always fill gaps with probabilistic assumptions rather than proactively flagging uncertainty. Left unchecked, these assumptions can compound into a tasteless product that may be 70-80% technically sound but lacks true usability (Note- I eventually had to add a templatized addendum to all prompts: "do not make assumptions, ask for clarification"). The exigent gap between technically sound and truly usable products in the age of AI is personified by the nuance of human perspective, our ability to curate. Simply put: AI can write code, but it can't feel friction.
+This project took 200+ hours to complete. I'd estimate I spent half of that learning new concepts and correcting assumptions Claude Code and Opus made on my behalf. These tools enabled me in ways not previously possible, but they are fundamentally designed for computational efficiency. They will always fill gaps with probabilistic assumptions rather than proactively flagging uncertainty. Left unchecked, these assumptions can compound into a tasteless product that may be 70-80% technically sound but lacks true usability (Note- I eventually had to add a templatized addendum to all prompts: "do not make assumptions, ask for clarification"). The exigent gap between technically sound and truly usable products in the age of AI is defined by the nuance of human perspective- our ability to curate. Simply put: AI can write code, but it can't feel friction.
 
 Obsessive QA and curation were necessary to close this gap in my case, catching the clunky flows and off center labels, among others. In the end these were resolved and the final product became something worth shipping.
 
