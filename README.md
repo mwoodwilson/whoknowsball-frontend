@@ -17,7 +17,7 @@
 
 ## The Problem
 
-In every group chat, sports bar, and/or comment section among sports fans, there exists (in one form or another) discussions that can simply be reduced to the same core question: who actually "knows ball"? A term of endearment, "knowing ball" has evolved into a universally understood term amongst young adults to describe someone with a superior grasp of sports analytics, strategy, and history, and they employ this knowledge to effectively predict outcomes of games. This has understandably led to sports betting being a loosely quantifiable method of measuring "ball knowledge", with bettors pointing to metrics like ROI and win/loss ratios as proof of their ball knowledge.
+In every group chat, sports bar, and/or comment section among sports fans, there exists (in one form or another) discussions that can be reduced down to the same core question: who actually "knows ball"? A term of endearment, "knowing ball" has evolved into a universally understood term amongst young adults to describe someone with a superior grasp of sports analytics, strategy, and history, and they employ this knowledge to effectively predict outcomes of games. This has understandably led to sports betting being a loosely quantifiable method of measuring "ball knowledge", with bettors pointing to metrics like ROI and win/loss ratios as proof of their ball knowledge.
 
 An issue arises though as betting apps track money, and **money doesn't measure skill.** A lucky $10 parlay doesn't mean you understand sports better than someone who consistently identifies value in underdogs, or can sweat a wild ten leg parlay through OT in Sunday Night Football.
 
