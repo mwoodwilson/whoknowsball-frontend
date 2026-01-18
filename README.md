@@ -66,7 +66,7 @@ These dimensions, combined with several different anti-gaming safeguards and con
 
 ### Features
 
-- **📊 Real-Time Odds** — Live lines from FanDuel, DraftKings, and BetMGM via integration with The Odds API
+- **📊 Real-Time Odds** — Live lines from major sportsbooks like FanDuel, DraftKings, and BetMGM via integration with The Odds API
 - **🏈 Multi-Sport Coverage** — NFL, NCAAF, NBA, MLB, NHL via API-Sports
 - **🎰 Parlay Builder** — Full sportsbook-style validation (no conflicting legs, correlation limits)
 - **📈 Performance Analytics** — Time-series charts, streak tracking, sport-by-sport breakdown, player badges
@@ -120,11 +120,11 @@ These dimensions, combined with several different anti-gaming safeguards and con
 
 ---
 
-## 🧠 How and Why I Built This
+## 🧠 Why and How I Built This
 
-**I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product, but I've never applied this skillset to building something in my spare time. I am also a hopelessly passionate Washington sports fan, and I participate in several fantasy football leagues with my friends + coworkers.**
+**I'm a Product Lead at Google. I work with engineers, PMs, UX, and many other technical roles on a daily basis. I have deep expertise in designing, prioritizing, and executing the vision for a product in my professional life, but I've never applied this skillset to building something in my personal life. I am also a hopelessly passionate Washington sports fan, and I participate in several fantasy football leagues with my friends + coworkers.**
 
-It began with an argument amongst friends in a fantasy football group chat. My friends and I enjoy casual sports betting, and constantly challenge one another over "who knows ball" more than the other. People were posting screenshots of bet slips, their YTD ROI, and their W:L ratio as proof. I realized while sifting through the nonsense, that there was always something missing- ROI didn't account for number of bets, W:L ratio ignored bankroll and bet types, and so on. After scouring dozens of betting apps and spending hours on the internet in search of a metric that included all necessary dimensions, I realized nothing existed. There was no way to quantify a bettors skill across their entire strategy, and more importantly, no way for me to legitimately prove my "ball knowledge" to my friends. Thus, "Ball Knowing Score (BKS)" was created. 
+It began with an argument in a fantasy football group chat. My friends and I enjoy casual sports betting, and constantly challenge one another over "who knows ball" more than the other. People were posting screenshots of bet slips, their YTD ROI, and their W:L ratios as proof. I realized while sifting through the nonsense, that there was always something missing- ROI didn't account for number of bets, W:L ratio ignored bankroll and bet types, and so on. After scouring dozens of betting apps and spending hours on the internet in search of a metric that included all necessary dimensions, I realized nothing existed. There was no way to quantify a bettors skill across their entire strategy, and more importantly, no way for me to legitimately prove my "ball knowledge" to my friends. Thus, "Ball Knowing Score (BKS)" and the "WhoKnowsBall" app was created. 
 
 In its first iteration, BKS was a simple composite metric that included wager, win/loss, bet type, and odds data, generating a number from 1-10. Fast forward 3 months, and it has evolved into a complex algorithm that integrates several additional aspects of a user's bet and combines them with anti-gaming mechanisms, stake-aware scaling, sport-specific calibrations and more. It serves as the nuclues of the WhoKnowsBall app.
 
@@ -133,11 +133,11 @@ I wrote the PRD and designed the vision, architecture, database schema, and UI. 
 Two tools made this possible: Claude Opus 4.5 and Claude Code.
 
 **Claude Opus 4.5: Associate Product Manager:** 
-- Organized, planned, and structured tasks to be deployed with Claude Code
+- Organized, planned, and structured tasks to subsequently be deployed with Claude Code
 - Generated detailed prompts using the Master-Clone Architecture (task mode + sub agents)
 - Assisted with QA and translated errors into actionable fixes
 - Reviewed, critiqued, and refined human-generated documentation (PRD, database schema, etc.)
-- Soothed my frustration when I repeatedly (accidentally) hit 'Shift+Enter' instead of ' \ +Enter' to start a new line in Claude Code
+- Soothed my frustration when I repeatedly (accidentally) hit 'Shift+Enter' instead of ' \ + Enter' to start a new line in Claude Code
 
 **Claude Code: Full-Stack Engineer:** 
 - Built full-stack infrastructure using MCA prompts with task mode + sub-agents
@@ -176,7 +176,7 @@ Two tools made this possible: Claude Opus 4.5 and Claude Code.
 
 This project took 200+ hours to complete. I'd estimate I spent half of that learning new concepts and correcting assumptions Claude Code and Opus made on my behalf. These tools enabled me in ways not previously possible, but they are fundamentally designed for computational efficiency. They will always fill gaps with probabilistic assumptions rather than proactively flagging uncertainty. Left unchecked, these assumptions can compound into a tasteless product that may be 70-80% technically sound but lacks true usability (Note- I eventually had to add a templatized addendum to all prompts: "do not make assumptions, ask for clarification"). The exigent gap between technically sound and truly usable products in the age of AI is defined by the nuance of human perspective- our ability to curate. Simply put: AI can write code, but it can't feel friction.
 
-Obsessive QA and curation were necessary to close this gap in my case, catching the clunky flows and off center labels, among others. In the end these were resolved and the final product became something worth shipping.
+My Obsessive QA and curation eventually closed this gap, catching clunky flows, off center labels, and other missteps that a system designed for efficiency would easily overlook. In the end these were resolved and the final product became something worth shipping.
 
 ---
 
