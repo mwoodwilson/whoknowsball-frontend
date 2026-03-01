@@ -38,8 +38,9 @@ The **BKS algorithm** evaluates bets across multiple dimensions:
 | **Difficulty** | Were you betting heavy favorites or finding unseen value in underdogs? |
 | **Complexity** | Are you firing off simple moneylines or sweating multi-leg parlays? |
 | **Accuracy** | Did you beat the closing line (CLV)? |
-| **Stake Significance** | Are you putting conviction behind your picks, or playing it safe with low wagers? |
+| **Stake Significance (Stake + Payout) ** | Are you putting conviction behind your picks, or playing it safe with low wagers? |
 | **Context** | Additional factors: Game importance, market efficiency, timing |
+
 
 These dimensions, combined with several different anti-gaming safeguards and context-aware functionality, grant users the ability to truly measure their effectiveness as a bettor and quantify their ball knowledge.
 
