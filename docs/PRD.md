@@ -12,7 +12,7 @@
 
 WhoKnowsBall is a mobile-first sports betting skill-tracking platform that transforms recreational sports betting into a competitive skill sport. By measuring betting decisions through our proprietary Ball Knowing Score (BKS) algorithm rather than tracking real money, we enable users to quantify their sports knowledge, compete on leaderboards, and improve their betting acumen without financial risk or regulatory friction.
 
-**Core Innovation:** A serverless scoring algorithm that evaluates betting skill across six dimensions—difficulty, complexity, payout conviction, closing line value, stake significance, and game context—producing an objective 0-100 score that rewards smart betting decisions regardless of outcome.
+**Core Innovation:** A serverless scoring algorithm that evaluates betting skill across six dimensions: difficulty, complexity, payout conviction, closing line value, stake significance, and game context, producing an objective 0-100 score that rewards smart betting decisions regardless of outcome.
 
 **Market Opportunity:** The sports betting education market is underserved, with millions of casual bettors seeking to improve but lacking objective feedback. WhoKnowsBall bridges this gap by gamifying skill development in a zero-cost, regulation-free environment.
 
