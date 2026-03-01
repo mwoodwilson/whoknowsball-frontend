@@ -121,7 +121,7 @@ These dimensions, combined with several different anti-gaming safeguards and con
 
 ---
 
-## 🧠 Why and How I Built This
+## 🧠 How and Why I Built This
 
 It began with an argument in a fantasy football group chat. My friends and I enjoy casual sports betting, and constantly challenge one another over "who knows ball" more than the other. People were posting screenshots of bet slips, their YTD ROI, and their W:L ratios as proof. I realized while sifting through the nonsense, that there was always something missing- ROI didn't account for number of bets, W:L ratio ignored bankroll and bet types, and so on. After scouring dozens of betting apps and spending hours on the internet in search of a metric that included all necessary dimensions, I realized nothing existed. There was no way to quantify a bettors skill across their entire strategy, and more importantly, no way for me to legitimately prove my "ball knowledge" to my friends. Thus, "Ball Knowing Score (BKS)" and the "WhoKnowsBall" app was created. 
 
