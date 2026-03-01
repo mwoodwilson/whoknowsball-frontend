@@ -241,7 +241,7 @@ src/
 
 ## 📄 Documentation
 
-- **[Product Requirements Document](./docs/PRD.md)** — Full specs and technical requirements
+- **[Product Requirements Document]([./docs/PRD.md](https://github.com/mwoodwilson/whoknowsball-frontend/blob/main/PRD.md))** — Full specs and technical requirements
 - **[Backend Repository](https://github.com/yourusername/whoknowsball-backend)** — API server and BKS algorithm
 
 ---
