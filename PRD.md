@@ -24,11 +24,11 @@ This document outlines the frontend product specifications and requirements for 
 
 ## 1.1 Product Vision
 
-**WhoKnowsBall** is a gamified sports betting and skill-tracking platform that quantifies betting acumen through a proprietary scoring algorithm. This algorithm generates a BKS, or "Ball Knowing Score", designed to measure a sports bettors bet quality and skill. Unlike traditional sportsbooks, users don't wager real money—instead, they compete via a leaderboard tracking **Ball Knowing Score (BKS)**.
+**WhoKnowsBall** is a gamified sports betting and skill-tracking platform that quantifies betting acumen through a proprietary scoring algorithm. This algorithm generates a BKS, or "Ball Knowing Score", designed to measure a sports bettors bet quality and skill. Unlike traditional sportsbooks, users don't wager real money- instead, they compete via a leaderboard tracking **Ball Knowing Score (BKS)**.
 
 ## 1.2 Problem Statement
 
-Sports bettors lack an objective metric to evaluate their betting skill independent of variance and bankroll fluctuations. The two metrics most consistently cited, Win/loss records and ROI, fail to capture:
+Sports bettors lack an objective metric to evaluate their betting skill independent of variance, luck, and bankroll fluctuations. The two metrics most consistently cited, Win/loss records and ROI, fail to capture:
 - Bet difficulty (underdog vs. favorite)
 - Market timing (closing line value)
 - Risk-adjusted returns
@@ -47,25 +47,8 @@ WhoKnowsBall introduces a deterministic scoring system that evaluates every bet 
 | **Fantasy Players** | DFS/fantasy sports enthusiasts | Apply analytical skills to spread betting |
 | **Sports Analysts** | Media personalities, podcasters | Prove predictive accuracy publicly |
 
-## 1.5 Key Metrics
 
-| Metric | Target | Current |
-|--------|--------|---------|
-| DAU/MAU Ratio | >25% | TBD |
-| Bets per User per Week | >5 | TBD |
-| 7-Day Retention | >40% | TBD |
-| NPS Score | >50 | TBD |
-
-## 1.6 Competitive Landscape
-
-| Competitor | Model | Differentiation |
-|------------|-------|-----------------|
-| **Action Network** | Tracking + content | No skill scoring |
-| **Pikkit** | Social betting | Simple win/loss tracking |
-| **Tallysight** | Expert tracking | Media-focused, no consumer app |
-| **WhoKnowsBall** | Skill quantification | Deterministic BKS algorithm |
-
-## 1.7 Technical Stack Overview
+## 1.5 Technical Stack Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -105,7 +88,6 @@ WhoKnowsBall introduces a deterministic scoring system that evaluates every bet 
 │  • Bets         │ │  • Sessions     │ │                 │
 └─────────────────┘ └─────────────────┘ └─────────────────┘
 ```
-
 ---
 
 # 2. Frontend Architecture
@@ -455,21 +437,8 @@ interface AuthContextValue {
         │                                            │ deadline │
         └────────────────────────────────────────────┴──────────┘
 
-2. OAUTH (Google/Apple)
-   ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
-   │  Social  │────▶│ Provider │────▶│ Callback │────▶│ Username │
-   │  Button  │     │  OAuth   │     │  Handler │     │  Setup?  │
-   └──────────┘     └──────────┘     └──────────┘     └──────────┘
-        │                                                   │
-        │ Deep link: whoknowsball://auth/callback           │
-        │                                                   ▼
-        │                                         ┌─────────────────┐
-        │                                         │ If no username: │
-        │                                         │ UsernameSetup   │
-        │                                         │ (non-dismissible)│
-        └─────────────────────────────────────────┴─────────────────┘
 
-3. BIOMETRIC (Face ID / Touch ID)
+2. BIOMETRIC (Face ID / Touch ID)
    ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
    │   App    │────▶│ Keychain │────▶│ Supabase │────▶│  MainApp │
    │  Launch  │     │   Read   │     │  signIn  │     │          │
@@ -488,7 +457,7 @@ interface AuthContextValue {
    │ • clearCredentials()               │
    └────────────────────────────────────┘
 
-4. EMAIL VERIFICATION ENFORCEMENT
+3. EMAIL VERIFICATION ENFORCEMENT
    ┌─────────────────────────────────────────────────────────────┐
    │                                                             │
    │  if (accountCreatedAt + 24h < now && !emailVerified) {      │
