@@ -248,7 +248,7 @@ src/
 
 ## 👋 About Me
 
-**Matt Wilson** — Product Lead at Google, exploring the frontier of AI-augmented development. 10 total years of experience in tech + media, 3 at Hulu and 4.5 at Google. Certified Ball Knower.
+**Matt Wilson** — Product Manager exploring the frontier of AI-augmented development. 10 total years of experience in tech + media. Certified Ball Knower.
 
 <div align="center">
 
